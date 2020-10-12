@@ -2,13 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 using static ResultTest;
+using static TimerTest;
+using static CountDownTimerTest;
+
 
 public class CharacterTest : MonoBehaviour
 {
     Animator CharaAnimator;　//アニメーター用変数
     Animator ResultAnimator;　//アニメーター用変数
     bool QuestionStatus = false; //出題状態かどうか
-    GameObject resultObj;　　//ゲームオブジェクトResultを入れる用
+    GameObject resultObj;  //ゲームオブジェクトResultを入れる用
+
+    static bool GameStartTrigger = false; //ゲーム開始の許可用
+
+    private float span = 3.0f;  //スパン
+    private float elapsedTime;  //合計経過時間
+    private float currentTime = 0.0f; //現在の時間
+
 
 
     void Start()
@@ -22,12 +32,10 @@ public class CharacterTest : MonoBehaviour
 
     }
 
-    private float span = 3.0f;  //スパン
-    private float elapsedTime;  //合計経過時間
-    private float currentTime = 0.0f;　  //現在の時間
 
     void Update()
     {
+
         if (CharaAnimator.GetBool("BackToIdle") == true)//待機戻りがオンだったら
         {
             CharaAnimator.SetBool("BackToIdle", false);  //オフにする
@@ -35,23 +43,29 @@ public class CharacterTest : MonoBehaviour
 
         currentTime += Time.deltaTime;  //経過時間を加える
 
-        if (currentTime > span)  //経過時間がスパンより大きくなったら実行
-        {
-            elapsedTime += currentTime;  //合計経過時間に累積
 
-            currentTime = 0f;　  //現在の時間をリセット
+        GameStartTrigger = GameStart;
 
-            //もし出題状態じゃなかったら実行
-            if(QuestionStatus == false)
+        if (GameStartTrigger == true) {
+
+            if (currentTime > span)  //経過時間がスパンより大きくなったら実行
             {
-                MoveSelect(); //方向を選ぶ関数
+                elapsedTime += currentTime;  //合計経過時間に累積
 
-            }
-            //もし出題状態だったら実行
+                currentTime = 0f;   //現在の時間をリセット
 
-            else if (QuestionStatus == true)
-            {
+                //もし出題状態じゃなかったら実行
+                if (QuestionStatus == false)
+                {
+                    MoveSelect(); //方向を選ぶ関数
 
+                }
+                //もし出題状態だったら実行
+
+                else if (QuestionStatus == true)
+                {
+
+                }
             }
 
         }
