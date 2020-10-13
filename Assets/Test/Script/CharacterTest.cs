@@ -76,7 +76,7 @@ public class CharacterTest : MonoBehaviour
         
         if (QuestionStatus == false) //出題状態じゃない限り、何も実行しないで戻る
         {
-            Debug.Log("りたーん");
+          //  Debug.Log("りたーん");
             return;
         }
 
@@ -85,7 +85,7 @@ public class CharacterTest : MonoBehaviour
             Debug.Log("左！あたり！");
             ResultAnimator.SetBool("Correct", true);
         }
-        else if (CharaAnimator.GetBool("Left") == false)
+        else
         {
             Debug.Log("左じゃないよハズレだよ！！");
             ResultAnimator.SetBool("Incorrect", true);
@@ -99,8 +99,8 @@ public class CharacterTest : MonoBehaviour
     {
         if (QuestionStatus == false) //出題状態じゃない限り、何も実行しないで戻る
         {
-            Debug.Log("りたーん");
-        return;
+            //  Debug.Log("りたーん");
+            return;
         }
 
         if (CharaAnimator.GetBool("Right") == true)
@@ -108,7 +108,7 @@ public class CharacterTest : MonoBehaviour
             Debug.Log("右！あたり！");
             ResultAnimator.SetBool("Correct", true);
         }
-        else if (CharaAnimator.GetBool("Right") == false)
+        else
         {
             Debug.Log("右じゃないよハズレだよ！！");
 
@@ -118,6 +118,53 @@ public class CharacterTest : MonoBehaviour
         Invoke("MoveReset", 0.5f); //しばらくしたら出題状態をやめて、アニメーターの状態をIdleに戻す。
 
     }
+    public void JudgeU()   //外から左ボタンが押されたときに実行
+    {
+
+        if (QuestionStatus == false) //出題状態じゃない限り、何も実行しないで戻る
+        {
+            //  Debug.Log("りたーん");
+            return;
+        }
+
+        if (CharaAnimator.GetBool("Up") == true)
+        {
+            Debug.Log("上！あたり！");
+            ResultAnimator.SetBool("Correct", true);
+        }
+        else
+        {
+            Debug.Log("上じゃないよハズレだよ！！");
+            ResultAnimator.SetBool("Incorrect", true);
+
+        }
+
+        Invoke("MoveReset", 0.5f); //しばらくしたら出題状態をやめて、アニメーターの状態をIdleに戻す。
+    }
+
+    public void JudgeD()   //外から左ボタンが押されたときに実行
+    {
+
+        if (QuestionStatus == false) //出題状態じゃない限り、何も実行しないで戻る
+        {
+            //   Debug.Log("りたーん");
+            return;
+        }
+
+        if (CharaAnimator.GetBool("Down") == true)
+        {
+            Debug.Log("下！あたり！");
+            ResultAnimator.SetBool("Correct", true);
+        }
+        else
+        {
+            Debug.Log("下じゃないよハズレだよ！！");
+            ResultAnimator.SetBool("Incorrect", true);
+
+        }
+
+        Invoke("MoveReset", 0.5f); //しばらくしたら出題状態をやめて、アニメーターの状態をIdleに戻す。
+    }
 
     private void MoveReset() //出題状態をやめて、アニメーターの状態をIdleに戻す。
     {
@@ -125,6 +172,8 @@ public class CharacterTest : MonoBehaviour
         Debug.Log("MoveReset");
         CharaAnimator.SetBool("Left", false);  //左トリガーをオフ
         CharaAnimator.SetBool("Right", false);  //右トリガーをオフ
+        CharaAnimator.SetBool("Up", false);  //上トリガーをオフ
+        CharaAnimator.SetBool("Down", false);  //下トリガーをオフ
         CharaAnimator.SetBool("BackToIdle", true);  //待機に戻るトリガーを実行
 
         ResultAnimator.SetBool("Correct", false);
@@ -143,7 +192,7 @@ public class CharacterTest : MonoBehaviour
 
         //Debug.LogFormat(elapsedTime + "秒経過");
 
-        switch (Random.Range(0, 10) % 2)　//ランダムのあまりの数値で分岐。2で割ったあまりだから0か1
+        switch (Random.Range(0, 100) % 4)　//ランダムのあまりの数値で分岐。2で割ったあまりだから0か1
         {
 
             case 0:
@@ -158,6 +207,18 @@ public class CharacterTest : MonoBehaviour
                 //Debug.Log("1");
 
                 CharaAnimator.SetBool("Right", true);  //右トリガーを実行
+
+                break;
+            case 2:
+                //Debug.Log("2");
+
+                CharaAnimator.SetBool("Up", true);  //上トリガーを実行
+
+                break;
+            case 3:
+                //Debug.Log("3");
+
+                CharaAnimator.SetBool("Down", true);  //下トリガーを実行
 
                 break;
         }

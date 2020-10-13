@@ -31,12 +31,20 @@ public class ButtonTest : MonoBehaviour
         {
             Debug.Log("左！");
 
-            //右を押した状態とキャラの向きがあってるか
-
         }
         else if (button == "Right")
         {
             Debug.Log("右！");
+
+        }
+        else if (button == "Up")
+        {
+            Debug.Log("上！");
+
+        }
+        else if (button == "Down")
+        {
+            Debug.Log("下！");
 
         }
     }
