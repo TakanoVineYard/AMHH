@@ -8,7 +8,6 @@ using static SoundTest;
 public class CountDownTimerTest : MonoBehaviour
 {
     private float seconds;　//秒
-    private float oldSeconds; //前のUpdateのときの秒数
 
     private int CountDownMin = 3; //カウントダウン整数
     private float CountDownSpan = 1.0f; //カウントダウンの秒スパン
@@ -23,9 +22,8 @@ public class CountDownTimerTest : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GameAudioSource.PlayOneShot(soundCountDown);
+        //GameAudioSource.PlayOneShot(soundCountDown);
         seconds = 0;
-        oldSeconds = 0;
         CountDownTimer = GetComponentInChildren<Text>(); //カウントダウン用Textコンポーネント拾ってくるぜ  
     }
 
@@ -44,7 +42,7 @@ public class CountDownTimerTest : MonoBehaviour
             {
                 Debug.Log(CountDownSpan+"秒たった");
                 CountDownMin -= 1;
-                seconds -= CountDownSpan; 
+                seconds = 0; 
 
             }
 
@@ -62,8 +60,6 @@ public class CountDownTimerTest : MonoBehaviour
                 GameStartTrigger();
                 Invoke("OffActiveStartText", 1); //一秒たったら消す
             }
-
-            oldSeconds = seconds; //経過時間として現在の時間を上書く
 
         }
     }

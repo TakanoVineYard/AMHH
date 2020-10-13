@@ -17,7 +17,7 @@ public class TimerTest : MonoBehaviour
     private Text CountTimer; //経過時間用
 
     public  AudioClip soundGameStart;
-    public  AudioClip soundGameBGM;
+    //public  AudioClip soundGameBGM;
 
     AudioSource GameAudioSource; //ゲームBGM
 
