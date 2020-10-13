@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI; //テキスト使うなら必要？
 using static TimerTest;
+using static SoundTest;
 
 public class CountDownTimerTest : MonoBehaviour
 {
@@ -10,17 +11,19 @@ public class CountDownTimerTest : MonoBehaviour
     private float oldSeconds; //前のUpdateのときの秒数
 
     private int CountDownMin = 3; //カウントダウン整数
-    private float CountDownSpan = 1.5f; //カウントダウンの秒スパン
+    private float CountDownSpan = 1.0f; //カウントダウンの秒スパン
 
     private Text CountDownTimer; //カウントダウン数値をいれるテキスト
 
     static public bool GameStart = false;
 
+     
 
 
     // Start is called before the first frame update
     void Start()
     {
+        GameAudioSource.PlayOneShot(soundCountDown);
         seconds = 0;
         oldSeconds = 0;
         CountDownTimer = GetComponentInChildren<Text>(); //カウントダウン用Textコンポーネント拾ってくるぜ  
@@ -37,7 +40,7 @@ public class CountDownTimerTest : MonoBehaviour
 
             //1秒でリセット
 
-            if (seconds >= CountDownSpan)
+            if (seconds > CountDownSpan)
             {
                 Debug.Log(CountDownSpan+"秒たった");
                 CountDownMin -= 1;
@@ -46,11 +49,11 @@ public class CountDownTimerTest : MonoBehaviour
             }
 
             //↓もし秒の数値が前回の秒数と違ったら(時間が経過してたら)テキストを更新
-            if ((int)seconds != (int)oldSeconds)
-            {
+            //if ((int)seconds != (int)oldSeconds)
+            //{
                 CountDownTimer.text = CountDownMin.ToString();
 
-            }
+            //}
 
             if (CountDownMin <= 0)
             {
@@ -67,7 +70,8 @@ public class CountDownTimerTest : MonoBehaviour
 
     void OffActiveStartText()
     {
-        this.gameObject.SetActive (false);
+        CountDownTimer.enabled = false;
+        //this.gameObject.SetActive (false);
 
     }
 }

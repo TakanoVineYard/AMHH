@@ -12,18 +12,24 @@ public class TimerTest : MonoBehaviour
     private static int minute; //分
     private static float seconds;　//秒
     private static float oldSeconds; //前のUpdateのときの秒数
-    
-    private Text CountTimer; //経過時間用
-    
 
-// Start is called before the first frame update
-void Start()
+
+    private Text CountTimer; //経過時間用
+
+    public  AudioClip soundGameStart;
+    public  AudioClip soundGameBGM;
+
+    AudioSource GameAudioSource; //ゲームBGM
+
+    // Start is called before the first frame update
+    void Start()
     {
         minute = 0;
         seconds = 0;
         oldSeconds = 0;
         CountTimer = GetComponentInChildren<Text>(); //ゲーム時間用Textコンポーネント拾ってくるぜ
         CountTimer.enabled = false;
+        GameAudioSource = GetComponent<AudioSource>(); //オーディオソースを引っ張る
 
     }
 
@@ -39,6 +45,8 @@ void Start()
             if (CountTimer.enabled == false)
             {
                 CountTimer.enabled = true;  //カウントの表示
+                //GameAudioSource.PlayOneShot(soundGameBGM); //音再生
+                GameAudioSource.PlayOneShot(soundGameStart); //音再生
 
             }
 
