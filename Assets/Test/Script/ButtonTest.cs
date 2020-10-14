@@ -29,22 +29,22 @@ public class ButtonTest : MonoBehaviour
 
         if (button == "Left")
         {
-            Debug.Log("左！");
+            //  Debug.Log("左！");
 
         }
         else if (button == "Right")
         {
-            Debug.Log("右！");
+           // Debug.Log("右！");
 
         }
         else if (button == "Up")
         {
-            Debug.Log("上！");
+            // Debug.Log("上！");
 
         }
         else if (button == "Down")
         {
-            Debug.Log("下！");
+            // Debug.Log("下！");
 
         }
     }

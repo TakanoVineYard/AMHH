@@ -21,7 +21,8 @@ public class CharacterTest : MonoBehaviour
 
 
 
-    void Start()
+
+    public void Start()
     {
         CharaAnimator = GetComponent<Animator>();　//このオブジェクトからアニメーターを取得
 
@@ -29,11 +30,12 @@ public class CharacterTest : MonoBehaviour
 
         ResultAnimator = resultObj.GetComponent<Animator>();　//シーンからアニメーターを取得
 
+        ResultTest rTest = resultObj.GetComponent<ResultTest>();
 
     }
 
 
-    void Update()
+    public void Update()
     {
 
         if (CharaAnimator.GetBool("BackToIdle") == true)//待機戻りがオンだったら
@@ -82,12 +84,13 @@ public class CharacterTest : MonoBehaviour
 
         if (CharaAnimator.GetBool("Left") == true)
         {
-            Debug.Log("左！あたり！");
+            ////Debug.Log("左！あたり！");
             ResultAnimator.SetBool("Correct", true);
+
         }
         else
         {
-            Debug.Log("左じゃないよハズレだよ！！");
+            ////Debug.Log("左じゃないよハズレだよ！！");
             ResultAnimator.SetBool("Incorrect", true);
 
         }
@@ -105,12 +108,12 @@ public class CharacterTest : MonoBehaviour
 
         if (CharaAnimator.GetBool("Right") == true)
         {
-            Debug.Log("右！あたり！");
+            //Debug.Log("右！あたり！");
             ResultAnimator.SetBool("Correct", true);
         }
         else
         {
-            Debug.Log("右じゃないよハズレだよ！！");
+            //Debug.Log("右じゃないよハズレだよ！！");
 
             ResultAnimator.SetBool("Incorrect", true);
         }
@@ -129,12 +132,12 @@ public class CharacterTest : MonoBehaviour
 
         if (CharaAnimator.GetBool("Up") == true)
         {
-            Debug.Log("上！あたり！");
+            //Debug.Log("上！あたり！");
             ResultAnimator.SetBool("Correct", true);
         }
         else
         {
-            Debug.Log("上じゃないよハズレだよ！！");
+            // Debug.Log("上じゃないよハズレだよ！！");
             ResultAnimator.SetBool("Incorrect", true);
 
         }
@@ -153,12 +156,12 @@ public class CharacterTest : MonoBehaviour
 
         if (CharaAnimator.GetBool("Down") == true)
         {
-            Debug.Log("下！あたり！");
+            // Debug.Log("下！あたり！");
             ResultAnimator.SetBool("Correct", true);
         }
         else
         {
-            Debug.Log("下じゃないよハズレだよ！！");
+            //Debug.Log("下じゃないよハズレだよ！！");
             ResultAnimator.SetBool("Incorrect", true);
 
         }
@@ -169,7 +172,7 @@ public class CharacterTest : MonoBehaviour
     private void MoveReset() //出題状態をやめて、アニメーターの状態をIdleに戻す。
     {
 
-        Debug.Log("MoveReset");
+        //Debug.Log("MoveReset");
         CharaAnimator.SetBool("Left", false);  //左トリガーをオフ
         CharaAnimator.SetBool("Right", false);  //右トリガーをオフ
         CharaAnimator.SetBool("Up", false);  //上トリガーをオフ

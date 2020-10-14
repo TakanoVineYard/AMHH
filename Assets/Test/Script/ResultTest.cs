@@ -1,11 +1,20 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class ResultTest : MonoBehaviour
 {
 
     Animator ResultAnimator;
+
+
+    int comboCorrectVal = 0;  //コンボ数
+    float scoreRank = 1.0f; //　スコア
+
+    public int comboGradeUpA = 5;  //このコンボ以上で、スコア計算値を上げる
+    public int comboGradeUpB = 10;
+    public int comboGradeUpC = 15;
+
+
+    float totalScore = 0f; //トータルスコア 
 
 
     // Start is called before the first frame update
@@ -16,34 +25,63 @@ public class ResultTest : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+     void Update()
     {
-        
+
+
+
+     void ResultCorrect()
+        {
+            ResultAnimator.SetBool("Correct", true);  //正解
+            Debug.Log("正解");
+
+            comboCorrectVal += 1;
+
+            float addScore = 0f;
+
+            if ((comboCorrectVal <= comboGradeUpA))
+            {
+                addScore = 1.0f;
+            }
+            else if ((comboCorrectVal > comboGradeUpA) && (comboCorrectVal <= comboGradeUpB))
+            {
+                addScore = 1.25f;
+            }
+            else if ((comboCorrectVal > comboGradeUpB) && (comboCorrectVal <= comboGradeUpC))
+            {
+                addScore = 1.5f;
+            }
+            else if (comboCorrectVal > comboGradeUpC)
+            {
+                addScore = 2f;
+            }
+            scoreRank = comboCorrectVal * addScore;
+
+            totalScore += scoreRank;
+
+            ResultReset();
+
+        }
+
+         void ResultInCorrect()
+        {
+            ResultAnimator.SetBool("Incorrect", true);  //不正解
+            Debug.Log("不正解");
+            comboCorrectVal = 0;
+            ResultReset();
+        }
+
+         void ResultReset()
+        {
+            ResultAnimator.SetBool("Correct", false);  //
+            ResultAnimator.SetBool("Incorrect", false);  //
+
+            Debug.Log(comboCorrectVal+ "コンボ");
+            Debug.Log("合計スコア"+(int)totalScore);
+
+
+        }
+
     }
-
-
-    public void ResultCorrectt()
-    {
-        ResultAnimator.SetBool("Correct", true);  //正解
-        Debug.Log("正解");
-
-    }
-
-    public void ResultIorrect()
-    {
-        ResultAnimator.SetBool("Incorrect", true);  //不正解
-        Debug.Log("不正解");
-
-    }
-
-    public void ResultReset()
-    {
-        ResultAnimator.SetBool("Correct", false);  //不正解
-        ResultAnimator.SetBool("Incorrect", false);  //不正解
-
-
-
-
-    }
-
 }
+

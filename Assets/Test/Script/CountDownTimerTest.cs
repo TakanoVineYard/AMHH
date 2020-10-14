@@ -40,7 +40,7 @@ public class CountDownTimerTest : MonoBehaviour
 
             if (seconds > CountDownSpan)
             {
-                Debug.Log(CountDownSpan+"秒たった");
+                //Debug.Log(CountDownSpan+"秒たった");
                 CountDownMin -= 1;
                 seconds = 0; 
 
