@@ -7,16 +7,16 @@ using static SoundTest;
 
 public class CountDownTimerTest : MonoBehaviour
 {
-    private float seconds;　//秒
+    public float seconds = 0;　//秒
 
-    private int CountDownMin = 3; //カウントダウン整数
-    private float CountDownSpan = 1.0f; //カウントダウンの秒スパン
+    public int CountDownMin = 3; //カウントダウン整数
+    public float CountDownSpan = 1.0f; //カウントダウンの秒スパン
 
-    private Text CountDownTimer; //カウントダウン数値をいれるテキスト
+    public Text CountDownTimer; //カウントダウン数値をいれるテキスト
 
     static public bool GameStart = false;
 
-     
+
 
 
     // Start is called before the first frame update
@@ -30,11 +30,11 @@ public class CountDownTimerTest : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        //Debug.Log("カウントダウン側経過時間"+getDeltaTime);
         if (GameStart == false)
         {
 
-            seconds += Time.deltaTime;
+            seconds += getDeltaTime;
 
             //1秒でリセット
 

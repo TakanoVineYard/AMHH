@@ -1,36 +1,33 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using static ResultTest;
+﻿using UnityEngine;
 using static TimerTest;
 using static CountDownTimerTest;
 
 
 public class CharacterTest : MonoBehaviour
 {
-    Animator CharaAnimator;　//アニメーター用変数
-    Animator ResultAnimator;　//アニメーター用変数
+    public Animator CharaAnimator;　//アニメーター用変数
+    public Animator ResultAnimator;　//アニメーター用変数
     bool QuestionStatus = false; //出題状態かどうか
     GameObject resultObj;  //ゲームオブジェクトResultを入れる用
 
     static bool GameStartTrigger = false; //ゲーム開始の許可用
 
-    private float span = 3.0f;  //スパン
-    private float elapsedTime;  //合計経過時間
-    private float currentTime = 0.0f; //現在の時間
-
-
-
+    public float span = 3.0f;  //スパン
+    public float elapsedTime;  //合計経過時間
+    public float currentTime = 0.0f; //現在の時間
 
     public void Start()
     {
-        CharaAnimator = GetComponent<Animator>();　//このオブジェクトからアニメーターを取得
 
         resultObj = GameObject.Find("Result");  //シーン内からResultゲームオブジェクトを探してくる
 
-        ResultAnimator = resultObj.GetComponent<Animator>();　//シーンからアニメーターを取得
+        CharaAnimator = GetComponent<Animator>();　//このオブジェクトからアニメーターを取得
+        ResultAnimator = resultObj.GetComponent<Animator>(); //シーンからアニメーターを取得
 
-        ResultTest rTest = resultObj.GetComponent<ResultTest>();
+
+
+
+        //ResultTest rTest = resultObj.GetComponent<ResultTest>();
 
     }
 
@@ -43,7 +40,7 @@ public class CharacterTest : MonoBehaviour
             CharaAnimator.SetBool("BackToIdle", false);  //オフにする
         }
 
-        currentTime += Time.deltaTime;  //経過時間を加える
+        currentTime += getDeltaTime;  //経過時間を加える
 
 
         GameStartTrigger = GameStart;
@@ -78,20 +75,23 @@ public class CharacterTest : MonoBehaviour
         
         if (QuestionStatus == false) //出題状態じゃない限り、何も実行しないで戻る
         {
-          //  Debug.Log("りたーん");
+            Debug.Log("りたーん");
             return;
         }
 
         if (CharaAnimator.GetBool("Left") == true)
         {
-            ////Debug.Log("左！あたり！");
+            //Debug.Log("左！あたり！");
             ResultAnimator.SetBool("Correct", true);
+            //ScoreTest.AddResult(true);
 
         }
         else
         {
             ////Debug.Log("左じゃないよハズレだよ！！");
             ResultAnimator.SetBool("Incorrect", true);
+
+            //ScoreTest.AddResult(false);
 
         }
 
@@ -110,12 +110,14 @@ public class CharacterTest : MonoBehaviour
         {
             //Debug.Log("右！あたり！");
             ResultAnimator.SetBool("Correct", true);
+            //ScoreTest.AddResult(true);
         }
         else
         {
             //Debug.Log("右じゃないよハズレだよ！！");
 
             ResultAnimator.SetBool("Incorrect", true);
+            //ScoreTest.AddResult(false);
         }
 
         Invoke("MoveReset", 0.5f); //しばらくしたら出題状態をやめて、アニメーターの状態をIdleに戻す。
@@ -134,11 +136,13 @@ public class CharacterTest : MonoBehaviour
         {
             //Debug.Log("上！あたり！");
             ResultAnimator.SetBool("Correct", true);
+            //ScoreTest.AddResult(true);
         }
         else
         {
             // Debug.Log("上じゃないよハズレだよ！！");
             ResultAnimator.SetBool("Incorrect", true);
+            //ScoreTest.AddResult(false);
 
         }
 
@@ -158,12 +162,13 @@ public class CharacterTest : MonoBehaviour
         {
             // Debug.Log("下！あたり！");
             ResultAnimator.SetBool("Correct", true);
+            //ScoreTest.AddResult(true);
         }
         else
         {
             //Debug.Log("下じゃないよハズレだよ！！");
             ResultAnimator.SetBool("Incorrect", true);
-
+            //ScoreTest.AddResult(false);
         }
 
         Invoke("MoveReset", 0.5f); //しばらくしたら出題状態をやめて、アニメーターの状態をIdleに戻す。

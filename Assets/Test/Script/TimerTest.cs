@@ -9,10 +9,12 @@ using static CountDownTimerTest;
 public class TimerTest : MonoBehaviour
 {
 
-    private static int minute; //分
-    private static float seconds;　//秒
-    private static float oldSeconds; //前のUpdateのときの秒数
+    private static int minute = 0; //分
+    private static float seconds = 0;　//秒
+    private static float oldSeconds = 0; //前のUpdateのときの秒数
 
+
+    public static float getDeltaTime = 0; //時間経過取得の大元
 
     private Text CountTimer; //経過時間用
 
@@ -38,7 +40,8 @@ public class TimerTest : MonoBehaviour
     void Update()
     {
 
-
+        getDeltaTime = Time.deltaTime;
+        //Debug.Log("経過時間(TimerTest)→"+ getDeltaTime);
 
         if (GameStart == true)
         {
@@ -50,7 +53,7 @@ public class TimerTest : MonoBehaviour
 
             }
 
-            seconds += Time.deltaTime;
+            seconds += getDeltaTime;
 
          //↓60秒で1分にリセット
             if (seconds >= 60)
