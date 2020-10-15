@@ -14,8 +14,7 @@ public class CountDownTimerTest : MonoBehaviour
 
     public Text CountDownTimer; //カウントダウン数値をいれるテキスト
 
-    static public bool GameStart = false;
-
+    public bool GameStart = false;
 
 
 

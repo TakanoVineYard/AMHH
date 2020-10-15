@@ -13,6 +13,7 @@ public class TimerTest : MonoBehaviour
     private static float seconds = 0;　//秒
     private static float oldSeconds = 0; //前のUpdateのときの秒数
 
+    public static bool GameStart { get; private set; }
 
     public static float getDeltaTime = 0; //時間経過取得の大元
 

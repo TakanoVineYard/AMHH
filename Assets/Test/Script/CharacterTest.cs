@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
-using static TimerTest;
+using System;
+using System.Collections.Generic;
 using static CountDownTimerTest;
 
 
@@ -10,11 +11,15 @@ public class CharacterTest : MonoBehaviour
     bool QuestionStatus = false; //出題状態かどうか
     GameObject resultObj;  //ゲームオブジェクトResultを入れる用
 
-    static bool GameStartTrigger = false; //ゲーム開始の許可用
+    public bool GameStartTrigger = false; //ゲーム開始の許可用
 
     public float span = 3.0f;  //スパン
     public float elapsedTime;  //合計経過時間
     public float currentTime = 0.0f; //現在の時間
+    
+    public ScoreTest sr = new ScoreTest();
+
+    public float getDeltaTime { get; private set; }
 
     public void Start()
     {
@@ -23,8 +28,6 @@ public class CharacterTest : MonoBehaviour
 
         CharaAnimator = GetComponent<Animator>();　//このオブジェクトからアニメーターを取得
         ResultAnimator = resultObj.GetComponent<Animator>(); //シーンからアニメーターを取得
-
-
 
 
         //ResultTest rTest = resultObj.GetComponent<ResultTest>();
@@ -43,9 +46,10 @@ public class CharacterTest : MonoBehaviour
         currentTime += getDeltaTime;  //経過時間を加える
 
 
-        GameStartTrigger = GameStart;
+        GameStartTrigger = GetGameStart();
 
-        if (GameStartTrigger == true) {
+        if (GameStartTrigger == true)
+        {
 
             if (currentTime > span)  //経過時間がスパンより大きくなったら実行
             {
@@ -66,16 +70,17 @@ public class CharacterTest : MonoBehaviour
 
                 }
             }
-
         }
     }
 
+       // return CountDownTimerTest.GameStart;
+ 
     public void JudgeL()   //外から左ボタンが押されたときに実行
     {
         
         if (QuestionStatus == false) //出題状態じゃない限り、何も実行しないで戻る
         {
-            Debug.Log("りたーん");
+            //Debug.Log("りたーん");
             return;
         }
 
@@ -83,15 +88,14 @@ public class CharacterTest : MonoBehaviour
         {
             //Debug.Log("左！あたり！");
             ResultAnimator.SetBool("Correct", true);
-            //ScoreTest.AddResult(true);
-
+            sr.AddResult(true);
         }
         else
         {
             ////Debug.Log("左じゃないよハズレだよ！！");
             ResultAnimator.SetBool("Incorrect", true);
 
-            //ScoreTest.AddResult(false);
+            sr.AddResult(false);
 
         }
 
@@ -110,14 +114,14 @@ public class CharacterTest : MonoBehaviour
         {
             //Debug.Log("右！あたり！");
             ResultAnimator.SetBool("Correct", true);
-            //ScoreTest.AddResult(true);
+            sr.AddResult(true);
         }
         else
         {
             //Debug.Log("右じゃないよハズレだよ！！");
 
             ResultAnimator.SetBool("Incorrect", true);
-            //ScoreTest.AddResult(false);
+            sr.AddResult(false);
         }
 
         Invoke("MoveReset", 0.5f); //しばらくしたら出題状態をやめて、アニメーターの状態をIdleに戻す。
@@ -136,13 +140,13 @@ public class CharacterTest : MonoBehaviour
         {
             //Debug.Log("上！あたり！");
             ResultAnimator.SetBool("Correct", true);
-            //ScoreTest.AddResult(true);
+            sr.AddResult(true);
         }
         else
         {
             // Debug.Log("上じゃないよハズレだよ！！");
             ResultAnimator.SetBool("Incorrect", true);
-            //ScoreTest.AddResult(false);
+            sr.AddResult(false);
 
         }
 
@@ -162,13 +166,13 @@ public class CharacterTest : MonoBehaviour
         {
             // Debug.Log("下！あたり！");
             ResultAnimator.SetBool("Correct", true);
-            //ScoreTest.AddResult(true);
+            sr.AddResult(true);
         }
         else
         {
             //Debug.Log("下じゃないよハズレだよ！！");
             ResultAnimator.SetBool("Incorrect", true);
-            //ScoreTest.AddResult(false);
+            sr.AddResult(false);
         }
 
         Invoke("MoveReset", 0.5f); //しばらくしたら出題状態をやめて、アニメーターの状態をIdleに戻す。
@@ -200,7 +204,7 @@ public class CharacterTest : MonoBehaviour
 
         //Debug.LogFormat(elapsedTime + "秒経過");
 
-        switch (Random.Range(0, 100) % 4)　//ランダムのあまりの数値で分岐。2で割ったあまりだから0か1
+        switch (UnityEngine.Random.Range(0, 100) % 4)　//ランダムのあまりの数値で分岐。2で割ったあまりだから0か1
         {
 
             case 0:
