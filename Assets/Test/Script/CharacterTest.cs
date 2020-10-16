@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using static CountDownTimerTest;
 using static TimerTest;
+using static ScoreTest;
 
 
 public class CharacterTest : MonoBehaviour
@@ -18,7 +19,17 @@ public class CharacterTest : MonoBehaviour
     public float elapsedTime;  //合計経過時間
     public float currentTime = 0.0f; //現在の時間
     
-    public ScoreTest sr;
+    public ScoreTest sr; //スコアテストスクリプト使えるように スコアリザルト用
+
+    public ScoreTest tj; //スコアテストスクリプト使えるように タイムジャッジ用
+
+
+    public float timeJudgeCount = 0;
+
+
+    public float startTime = 0.0f; //出題時点のカレントタイム
+    public float endTime = 0.0f; //回答時のカレントタイム。差分で答えるまでにかかった時間を取る
+    public float answerTime = 0.0f; //出題から回答までの時間をとる
 
 
     public void Start()
@@ -47,16 +58,19 @@ public class CharacterTest : MonoBehaviour
 
         currentTime += getDeltaTime;  //経過時間を加える
 
+        //Debug.Log("startTime"+startTime);
+        //Debug.Log("endTime" + endTime);
+        //Debug.Log(getDeltaTime);
 
-         GameStartTrigger = GameStart;
+        GameStartTrigger = GameStart;
 
         if (GameStartTrigger == true)
         {
 
+            endTime += getDeltaTime;
+
             if (currentTime > span)  //経過時間がスパンより大きくなったら実行
             {
-                elapsedTime += currentTime;  //合計経過時間に累積
-
                 currentTime = 0f;   //現在の時間をリセット
 
                 //もし出題状態じゃなかったら実行
@@ -72,14 +86,28 @@ public class CharacterTest : MonoBehaviour
 
                 }
             }
+
+            if (GetAnswerTime() > tj.timeJudgeRange[4])
+            {
+                ResultAnimator.SetBool("Incorrect", true);
+                sr.AddResult(false);
+                Invoke("MoveReset", 0.5f);
+                Debug.Log((tj.timeJudgeRange[4]) + "経過でミス");
+                endTime = 0;
+
+            }
         }
+
+
     }
 
        // return CountDownTimerTest.GameStart;
  
     public void JudgeL()   //外から左ボタンが押されたときに実行
     {
-        
+
+
+
         if (QuestionStatus == false) //出題状態じゃない限り、何も実行しないで戻る
         {
             //Debug.Log("りたーん");
@@ -110,6 +138,9 @@ public class CharacterTest : MonoBehaviour
 
     public void JudgeR()   //外から右ボタンが押されたときに実行
     {
+
+
+
         if (QuestionStatus == false) //出題状態じゃない限り、何も実行しないで戻る
         {
             //  Debug.Log("りたーん");
@@ -137,6 +168,7 @@ public class CharacterTest : MonoBehaviour
     public void JudgeU()   //外から左ボタンが押されたときに実行
     {
 
+
         if (QuestionStatus == false) //出題状態じゃない限り、何も実行しないで戻る
         {
             //  Debug.Log("りたーん");
@@ -163,6 +195,9 @@ public class CharacterTest : MonoBehaviour
 
     public void JudgeD()   //外から左ボタンが押されたときに実行
     {
+
+
+
 
         if (QuestionStatus == false) //出題状態じゃない限り、何も実行しないで戻る
         {
@@ -193,7 +228,8 @@ public class CharacterTest : MonoBehaviour
     {
 
         QuestionStatus = true; //出題状態にする
-
+        startTime = 0;
+        endTime = 0;
 
         switch (UnityEngine.Random.Range(0, 100) % 4)　//ランダムのあまりの数値で分岐。2で割ったあまりだから0か1
         {
@@ -244,6 +280,12 @@ public class CharacterTest : MonoBehaviour
 
 
 
+    }
+
+    public float GetAnswerTime()
+    {
+         
+        return (endTime - startTime);
     }
 
 }

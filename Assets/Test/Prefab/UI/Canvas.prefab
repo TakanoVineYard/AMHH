@@ -224,7 +224,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -213.13, y: -643.86}
+  m_AnchoredPosition: {x: -213.13, y: -682}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &639918251
@@ -248,7 +248,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -257,11 +257,11 @@ MonoBehaviour:
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 60
-    m_FontStyle: 0
+    m_FontStyle: 1
     m_BestFit: 1
     m_MinSize: 58
-    m_MaxSize: 75
-    m_Alignment: 2
+    m_MaxSize: 111
+    m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 1
@@ -280,6 +280,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d3c0f111970f734da7d818203736c50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  totalScore: 0
+  comboText: {fileID: 0}
+  scoreText: {fileID: 0}
+  timeJudgeRange:
+  - 1
+  - 1.5
+  - 2
+  - 3
+  - 4
+  timeJudgeValue:
+  - 1.5
+  - 1.2
+  - 1
+  - 0.5
+  - 0
+  at: {fileID: 0}
+  successResult: 0
 --- !u!1 &787057960
 GameObject:
   m_ObjectHideFlags: 0
@@ -735,7 +752,7 @@ MonoBehaviour:
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 240
-    m_FontStyle: 0
+    m_FontStyle: 1
     m_BestFit: 1
     m_MinSize: 100
     m_MaxSize: 300
@@ -854,6 +871,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b73060e6f939ed64dab1760b8fc7ebfb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  seconds: 0
+  CountDownMin: 3
+  CountDownSpan: 1
+  CountDownTimer: {fileID: 0}
 --- !u!1 &1677118799
 GameObject:
   m_ObjectHideFlags: 0
@@ -967,7 +988,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 59.79, y: -643.86}
+  m_AnchoredPosition: {x: 59.79, y: -682}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1912327568
@@ -991,7 +1012,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -1000,7 +1021,7 @@ MonoBehaviour:
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 60
-    m_FontStyle: 0
+    m_FontStyle: 1
     m_BestFit: 1
     m_MinSize: 58
     m_MaxSize: 75
@@ -1023,6 +1044,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d3c0f111970f734da7d818203736c50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  totalScore: 0
+  comboText: {fileID: 0}
+  scoreText: {fileID: 0}
+  timeJudgeRange:
+  - 1
+  - 1.5
+  - 2
+  - 3
+  - 4
+  timeJudgeValue:
+  - 1.5
+  - 1.2
+  - 1
+  - 0.5
+  - 0
+  at: {fileID: 0}
+  successResult: 0
 --- !u!1 &8828610267600066835
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,15 +1,14 @@
-﻿using UnityEngine;
-using System;
+﻿using System.Collections;
 using System.Collections.Generic;
-using static CountDownTimerTest;
-using static TimerTest;
+using UnityEngine;
 
-public class AnserJudgeTest : MonoBehaviour
+public class MainTitleTest : MonoBehaviour
 {
+    
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -17,4 +16,7 @@ public class AnserJudgeTest : MonoBehaviour
     {
         
     }
+
+    //SceneManager.LoadScene("MainScene");
+
 }
