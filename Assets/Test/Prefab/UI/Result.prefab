@@ -202,7 +202,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8617312596348728638}
   - component: {fileID: 6956662925455351079}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Result
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -218,7 +218,7 @@ Transform:
   m_GameObject: {fileID: 6129253380377414754}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.040656567, y: 0.2541077, z: -0.25264072}
-  m_LocalScale: {x: 0.093671, y: 0.093671, z: 0.093671}
+  m_LocalScale: {x: 0.06386283, y: 0.06386283, z: 0.06386283}
   m_Children:
   - {fileID: 1512497935166918908}
   - {fileID: 8348694087964804437}
@@ -319,7 +319,7 @@ PrefabInstance:
     - target: {fileID: 4761488814603325526, guid: a46138e5040e5c749bfae2a606d44098,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4761488814603325526, guid: a46138e5040e5c749bfae2a606d44098,
         type: 3}
@@ -339,7 +339,7 @@ PrefabInstance:
     - target: {fileID: 6661580960137449887, guid: a46138e5040e5c749bfae2a606d44098,
         type: 3}
       propertyPath: m_FontSize
-      value: 119
+      value: 229
       objectReference: {fileID: 0}
     - target: {fileID: 6661580960137449887, guid: a46138e5040e5c749bfae2a606d44098,
         type: 3}
@@ -375,7 +375,7 @@ PrefabInstance:
     - target: {fileID: 6957022031202935412, guid: 0680a11cd39d70c4791ae495a8e14c7a,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6957022031202935412, guid: 0680a11cd39d70c4791ae495a8e14c7a,
         type: 3}
@@ -390,7 +390,7 @@ PrefabInstance:
     - target: {fileID: 7989435818342502354, guid: 0680a11cd39d70c4791ae495a8e14c7a,
         type: 3}
       propertyPath: m_FontSize
-      value: 119
+      value: 229
       objectReference: {fileID: 0}
     - target: {fileID: 7989435818342502354, guid: 0680a11cd39d70c4791ae495a8e14c7a,
         type: 3}

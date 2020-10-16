@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI; //テキスト使うなら必要？
-using static CountDownTimerTest;
+using static TimerTest;
 
 
 
@@ -13,7 +13,7 @@ public class TimerTest : MonoBehaviour
     private static float seconds = 0;　//秒
     private static float oldSeconds = 0; //前のUpdateのときの秒数
 
-    public static bool GameStart { get; private set; }
+    public static bool GameStart;
 
     public static float getDeltaTime = 0; //時間経過取得の大元
 
@@ -42,14 +42,12 @@ public class TimerTest : MonoBehaviour
     {
 
         getDeltaTime = Time.deltaTime;
-        //Debug.Log("経過時間(TimerTest)→"+ getDeltaTime);
 
         if (GameStart == true)
         {
             if (CountTimer.enabled == false)
             {
                 CountTimer.enabled = true;  //カウントの表示
-                //GameAudioSource.PlayOneShot(soundGameBGM); //音再生
                 GameAudioSource.PlayOneShot(soundGameStart); //音再生
 
             }

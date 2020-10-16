@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using static CountDownTimerTest;
+using static TimerTest;
 
 
 public class CharacterTest : MonoBehaviour
@@ -17,12 +18,12 @@ public class CharacterTest : MonoBehaviour
     public float elapsedTime;  //合計経過時間
     public float currentTime = 0.0f; //現在の時間
     
-    public ScoreTest sr = new ScoreTest();
+    public ScoreTest sr;
 
-    public float getDeltaTime { get; private set; }
 
     public void Start()
     {
+        sr = GameObject.Find("score").GetComponent<ScoreTest>();
 
         resultObj = GameObject.Find("Result");  //シーン内からResultゲームオブジェクトを探してくる
 
@@ -40,13 +41,14 @@ public class CharacterTest : MonoBehaviour
 
         if (CharaAnimator.GetBool("BackToIdle") == true)//待機戻りがオンだったら
         {
+            
             CharaAnimator.SetBool("BackToIdle", false);  //オフにする
         }
 
         currentTime += getDeltaTime;  //経過時間を加える
 
 
-        GameStartTrigger = GetGameStart();
+         GameStartTrigger = GameStart;
 
         if (GameStartTrigger == true)
         {
@@ -84,20 +86,24 @@ public class CharacterTest : MonoBehaviour
             return;
         }
 
+
         if (CharaAnimator.GetBool("Left") == true)
         {
             //Debug.Log("左！あたり！");
             ResultAnimator.SetBool("Correct", true);
+
+
             sr.AddResult(true);
         }
         else
         {
-            ////Debug.Log("左じゃないよハズレだよ！！");
+            //ｓDebug.Log("左じゃないよハズレだよ！！");
             ResultAnimator.SetBool("Incorrect", true);
 
             sr.AddResult(false);
 
         }
+
 
         Invoke("MoveReset", 0.5f); //しばらくしたら出題状態をやめて、アニメーターの状態をIdleに戻す。
     }
@@ -123,6 +129,7 @@ public class CharacterTest : MonoBehaviour
             ResultAnimator.SetBool("Incorrect", true);
             sr.AddResult(false);
         }
+
 
         Invoke("MoveReset", 0.5f); //しばらくしたら出題状態をやめて、アニメーターの状態をIdleに戻す。
 
@@ -150,6 +157,7 @@ public class CharacterTest : MonoBehaviour
 
         }
 
+
         Invoke("MoveReset", 0.5f); //しばらくしたら出題状態をやめて、アニメーターの状態をIdleに戻す。
     }
 
@@ -175,26 +183,10 @@ public class CharacterTest : MonoBehaviour
             sr.AddResult(false);
         }
 
+
         Invoke("MoveReset", 0.5f); //しばらくしたら出題状態をやめて、アニメーターの状態をIdleに戻す。
     }
 
-    private void MoveReset() //出題状態をやめて、アニメーターの状態をIdleに戻す。
-    {
-
-        //Debug.Log("MoveReset");
-        CharaAnimator.SetBool("Left", false);  //左トリガーをオフ
-        CharaAnimator.SetBool("Right", false);  //右トリガーをオフ
-        CharaAnimator.SetBool("Up", false);  //上トリガーをオフ
-        CharaAnimator.SetBool("Down", false);  //下トリガーをオフ
-        CharaAnimator.SetBool("BackToIdle", true);  //待機に戻るトリガーを実行
-
-        ResultAnimator.SetBool("Correct", false);
-        ResultAnimator.SetBool("Incorrect", false);
-
-        QuestionStatus = false;
-
-
-    }
 
 
     private void MoveSelect() //キャラの方向を選ぶ関数
@@ -202,7 +194,6 @@ public class CharacterTest : MonoBehaviour
 
         QuestionStatus = true; //出題状態にする
 
-        //Debug.LogFormat(elapsedTime + "秒経過");
 
         switch (UnityEngine.Random.Range(0, 100) % 4)　//ランダムのあまりの数値で分岐。2で割ったあまりだから0か1
         {
@@ -236,4 +227,23 @@ public class CharacterTest : MonoBehaviour
         }
 
     }
+
+
+    private void MoveReset() //出題状態をやめて、アニメーターの状態をIdleに戻す。
+    {
+
+        QuestionStatus = false;
+        CharaAnimator.SetBool("Left", false);  //左トリガーをオフ
+        CharaAnimator.SetBool("Right", false);  //右トリガーをオフ
+        CharaAnimator.SetBool("Up", false);  //上トリガーをオフ
+        CharaAnimator.SetBool("Down", false);  //下トリガーをオフ
+        CharaAnimator.SetBool("BackToIdle", true);  //待機に戻るトリガーを実行
+
+        ResultAnimator.SetBool("Correct", false); //　正解トリガーをオフ
+        ResultAnimator.SetBool("Incorrect", false); //不正解トリガーをオフ
+
+
+
+    }
+
 }

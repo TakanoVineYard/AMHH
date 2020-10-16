@@ -5,31 +5,61 @@ using UnityEngine;
 
 public class ScoreTest : MonoBehaviour
 {
-    int comboCountNum;
-    const float baseScore = 1.0f;
-    float totalScore = 0.0f;
+    int comboCountNum = 0;
+    const float baseScore = 10.0f;
+    public float totalScore = 0.0f;
+
+    public Text comboText;
+    public Text scoreText;
+
+
+
     /// <summary>
     /// 成功したか失敗したかを、ゲームを管理するクラスからこいつへ教えてあげる
     /// </summary>
     /// <param name="success"></param>
     /// 
 
-        public void AddResult(bool success)
+    void Start()
+    {
+        GameObject comboTextObj = GameObject.Find("comboCount");
+        GameObject scoreTextObj = GameObject.Find("score");
+
+        comboText = comboTextObj.GetComponentInChildren<Text>();
+        scoreText = scoreTextObj.GetComponentInChildren<Text>();
+
+        Debug.Log(comboText);
+        Debug.Log(scoreText);
+
+
+    }
+
+
+    public void Update()
+    {
+
+
+    }
+
+    public void AddResult(bool success)
         {
             if (success)
             {
                 comboCountNum++;
-                Debug.Log(GetScore());
+               // Debug.Log(GetScore());
             }
             else
             {
                 comboCountNum = 0;
 
             }
-            Debug.Log(comboCountNum + "コンボ");
-            Debug.Log("スコア"+GetScore());
+        comboText.text = comboCountNum.ToString() + "コンボ";
+        scoreText.text = "スコア:" + GetScore();
 
-        }
+        //Debug.Log(comboCountNum + "コンボ");
+        //Debug.Log("スコア"+GetScore());
+
+    }
     /// <summary>
     /// 現状でのスコアをゲッツ
     /// </summary>
@@ -38,6 +68,7 @@ public class ScoreTest : MonoBehaviour
     {
         totalScore += baseScore * comboCountNum;
         return totalScore;
+
     }
 
 }

@@ -532,6 +532,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4573cd44aaea73428db235673d16719, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CharaAnimator: {fileID: 8712669223339511630}
+  ResultAnimator: {fileID: 0}
+  GameStartTrigger: 0
+  span: 3
+  elapsedTime: 0
+  currentTime: 0
+  sr: {fileID: 0}
 --- !u!1 &8712669224400883916
 GameObject:
   m_ObjectHideFlags: 0
