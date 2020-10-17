@@ -108,7 +108,6 @@ public class CharacterTest : MonoBehaviour
     {
 
 
-
         if (QuestionStatus == false) //出題状態じゃない限り、何も実行しないで戻る
         {
             //Debug.Log("りたーん");

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI; //テキスト使うなら必要？
 using static TimerTest;
+using UnityEngine.SceneManagement; //シーン切り替え
 
 
 
@@ -20,53 +21,71 @@ public class TimerTest : MonoBehaviour
     private Text CountTimer; //経過時間用
 
     public  AudioClip soundGameStart;
-    //public  AudioClip soundGameBGM;
+    public  AudioClip soundGameBGM;
 
     AudioSource GameAudioSource; //ゲームBGM
 
-    // Start is called before the first frame update
+    public GameObject pauseButton;
+    public bool PauseButton = false; //ゲーム一時停止
+
+    public bool gameFinish = false;
+
+    //Start is called before the first frame update
     void Start()
     {
+
+        //pauseButton = GameObject.Find("PauseButton");
+
         minute = 0;
         seconds = 0;
         oldSeconds = 0;
         CountTimer = GetComponentInChildren<Text>(); //ゲーム時間用Textコンポーネント拾ってくるぜ
-        CountTimer.enabled = false;
+        CountTimer.enabled = false;　//
         GameAudioSource = GetComponent<AudioSource>(); //オーディオソースを引っ張る
 
     }
 
 
-    // Update is called once per frame
+    //Update is called once per frame
     void Update()
     {
-
         getDeltaTime = Time.deltaTime;
 
-        if (GameStart == true)
+        if ((GameStart == true)&&(gameFinish == false))
         {
             if (CountTimer.enabled == false)
             {
                 CountTimer.enabled = true;  //カウントの表示
                 GameAudioSource.PlayOneShot(soundGameStart); //音再生
-
-            }
+            } //開始時テキストの表示
 
             seconds += getDeltaTime;
 
-         //↓60秒で1分にリセット
+            //↓60秒で1分にリセット
             if (seconds >= 60)
             {
-                minute++;
-                seconds = seconds - 60;
+                //minute++;
+                //seconds = seconds - 60;
+                GameStart = false;
+                gameFinish = true;
             }
             //↓もし秒の数値が前回の秒数と違ったら(時間が経過してたら)テキストを更新
-            if ((int)seconds != (int)oldSeconds)
+            if ((GameStart == true)&&((int)seconds != (int)oldSeconds))
             {
-                CountTimer.text = minute.ToString("00") + ":" + ((int)seconds).ToString("00");
+//                CountTimer.text = minute.ToString("00") + ":" + ((int)seconds).ToString("00");
+                CountTimer.text = ((int)seconds).ToString("00");
             }
 
             oldSeconds = seconds; //経過時間として現在の時間を上書く
+
+        }
+
+        if ((GameStart == false)&&(gameFinish == true))
+        {
+            Debug.Log("ゲームとまった");
+
+            CountTimer.text = "Finish!!";
+            GamePose();
 
         }
     }
@@ -80,4 +99,15 @@ public class TimerTest : MonoBehaviour
         GameStart = true;
     }
 
+    public void GamePose()　//時間経過後ゲーム止める
+    {
+        Time.timeScale = 1;
+        Invoke("DerayGameTitleLoadRun", 4.0f);
+
+    }
+
+    public void DerayGameTitleLoadRun()
+    {
+        SceneManager.LoadScene("MainTitle");
+    }
 }

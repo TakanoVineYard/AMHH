@@ -6,8 +6,8 @@ using static UnityEngine.GameObject;
 
 public class ScoreTest : MonoBehaviour
 {
-    int comboCountNum = 0;
-    const float baseScore = 10.0f;
+    public int comboCountNum = 0;
+    const float baseScore = 100.0f;
     public float totalScore = 0.0f;
 
     public Text comboText;
@@ -30,7 +30,7 @@ public class ScoreTest : MonoBehaviour
     /// <param name="success"></param>
     /// 
 
-    void Start()
+    public void Start()
     {
         GameObject comboTextObj = GameObject.Find("comboCount");
         GameObject scoreTextObj = GameObject.Find("score");

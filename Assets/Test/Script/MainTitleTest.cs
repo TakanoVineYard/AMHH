@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement; //シーン切り替え
 public class MainTitleTest : MonoBehaviour
 {
     
@@ -18,5 +18,15 @@ public class MainTitleTest : MonoBehaviour
     }
 
     //SceneManager.LoadScene("MainScene");
+    public void TapStartButton()
+    {
+        Invoke("DerayGameLoadRun", 1);
 
+    }
+
+    public void DerayGameLoadRun()
+    {
+
+        SceneManager.LoadScene("Test_ButtonTap");
+    }
 }

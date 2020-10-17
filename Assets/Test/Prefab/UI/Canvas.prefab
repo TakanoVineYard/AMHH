@@ -93,6 +93,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundGameStart: {fileID: 8300000, guid: 3733abfdb4e0d2c4cb9c1ee909de7742, type: 3}
+  soundGameBGM: {fileID: 0}
+  pauseButton: {fileID: 0}
+  PauseButton: 0
 --- !u!82 &305729552
 AudioSource:
   m_ObjectHideFlags: 0
@@ -786,7 +789,6 @@ MonoBehaviour:
   startTime: 0
   endTime: 0
   answerTime: 0
-  questionTimeText: {fileID: 0}
 --- !u!1 &1507831053
 GameObject:
   m_ObjectHideFlags: 0
