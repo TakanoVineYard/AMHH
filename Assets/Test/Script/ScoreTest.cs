@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine.UI; //テキスト使うなら必要
 using UnityEngine;
+using static UnityEngine.GameObject;
 
 public class ScoreTest : MonoBehaviour
 {
@@ -13,11 +14,16 @@ public class ScoreTest : MonoBehaviour
     public Text scoreText;
 
     public float[] timeJudgeRange = new float[5]; //回答までの時間区分け
-    public float[] timeJudgeValue = new float[5];　//回答までの時間による係数
+    public float[] timeJudgeValue = new float[6];　//回答までの時間による係数
 
     public CharacterTest at;
 
     public bool successResult;
+
+    private GameObject ctj;
+
+        
+
     /// <summary>
     /// 成功したか失敗したかを、ゲームを管理するクラスからこいつへ教えてあげる
     /// </summary>
@@ -36,7 +42,7 @@ public class ScoreTest : MonoBehaviour
         Debug.Log(scoreText);
 
         at = GameObject.Find("CharacterAll").GetComponent<CharacterTest>();
-        
+        ctj = GameObject.Find("correctTimeJudge"); 
 
     }
 
@@ -59,7 +65,7 @@ public class ScoreTest : MonoBehaviour
                 comboCountNum++;
                // Debug.Log(GetScore());
             }
-            else if (answerTimeRange > timeJudgeRange[0])  //5秒以上かかっててもだめ
+            else if ((success)&&(answerTimeRange > timeJudgeRange[3]))  //成功だが3秒以上かかっててもだめ
             {
             comboCountNum = 0;
 
@@ -69,10 +75,9 @@ public class ScoreTest : MonoBehaviour
                 comboCountNum = 0;
 
             }
-
-        comboText.text = comboCountNum.ToString() + "コンボ";
+            
         scoreText.text = "スコア:" + GetScore(answerTimeRange);
-
+        comboText.text = comboCountNum.ToString() + "コンボ";
         //Debug.Log(comboCountNum + "コンボ");
         //Debug.Log("スコア"+GetScore());
     }
@@ -89,29 +94,44 @@ public class ScoreTest : MonoBehaviour
         {
             coefficient = timeJudgeValue[0];
             Debug.Log("Great!" + timeJudgeValue[0]);
+            ctj.GetComponent<TextMesh>().text = "Great!";
         }
        else if ((pastAnswerTime > timeJudgeRange[0]) && (pastAnswerTime <= timeJudgeRange[1]) && (successResult))
         {
             coefficient = timeJudgeValue[1];
             Debug.Log("Good" + timeJudgeValue[1]);
+            ctj.GetComponent<TextMesh>().text = "Good!";
         }
         else if ((pastAnswerTime > timeJudgeRange[1]) && (pastAnswerTime <= timeJudgeRange[2]) && (successResult))
         {
             coefficient = timeJudgeValue[2];
             Debug.Log("better" + timeJudgeValue[2]);
+            ctj.GetComponent<TextMesh>().text = "better!";
         }
         else if ((pastAnswerTime > timeJudgeRange[2]) && (pastAnswerTime <= timeJudgeRange[3]) && (successResult))
         {
             coefficient = timeJudgeValue[3];
-            Debug.Log("Bad");
+            ctj.GetComponent<TextMesh>().text = "NotBad";
+            Debug.Log("NotBad");
         }
-       else if (pastAnswerTime > timeJudgeRange[4])
+       else if ((pastAnswerTime > timeJudgeRange[3]) && (pastAnswerTime <= timeJudgeRange[4]) && (successResult))
         {
             coefficient = timeJudgeValue[4];
+            ctj.GetComponent<TextMesh>().text = "Bad";
+
+            Debug.Log("Bad");
+        }
+
+        else if (pastAnswerTime > timeJudgeRange[4])
+        {
+            coefficient = timeJudgeValue[5];
 
             Debug.Log("miss");
+            ctj.GetComponent<TextMesh>().text = "miss";
+            comboCountNum = 0;
 
         }
+        at.endTime = 0;
 
         if (comboCountNum == 0){
             return totalScore;

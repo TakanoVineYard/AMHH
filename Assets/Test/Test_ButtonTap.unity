@@ -811,6 +811,26 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &1403364116 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1403364116, guid: bb70b61f7b1362d4fb267698bfdf7d6c,
+    type: 3}
+  m_PrefabInstance: {fileID: 8828610266901568353}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1403364120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1403364116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 530d4db3b9821374580702b4ccbe9c33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  at: {fileID: 0}
+  debugQTText: {fileID: 0}
 --- !u!1 &1546859978
 GameObject:
   m_ObjectHideFlags: 0
@@ -1540,7 +1560,7 @@ PrefabInstance:
     - target: {fileID: 8617312596348728638, guid: 6a856d2376c5a2245a3e2dacd1cf98c7,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8617312596348728638, guid: 6a856d2376c5a2245a3e2dacd1cf98c7,
         type: 3}
@@ -1681,6 +1701,26 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 932668026}
+    - target: {fileID: 1403364120, guid: bb70b61f7b1362d4fb267698bfdf7d6c, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1912327569, guid: bb70b61f7b1362d4fb267698bfdf7d6c, type: 3}
+      propertyPath: timeJudgeValue.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1912327569, guid: bb70b61f7b1362d4fb267698bfdf7d6c, type: 3}
+      propertyPath: timeJudgeValue.Array.data[2]
+      value: 1.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1912327569, guid: bb70b61f7b1362d4fb267698bfdf7d6c, type: 3}
+      propertyPath: timeJudgeValue.Array.data[3]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1912327569, guid: bb70b61f7b1362d4fb267698bfdf7d6c, type: 3}
+      propertyPath: timeJudgeValue.Array.data[4]
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 8828610267600066837, guid: bb70b61f7b1362d4fb267698bfdf7d6c,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
@@ -1801,5 +1841,6 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 932668026}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1403364120, guid: bb70b61f7b1362d4fb267698bfdf7d6c, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: bb70b61f7b1362d4fb267698bfdf7d6c, type: 3}

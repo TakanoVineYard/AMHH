@@ -32,6 +32,7 @@ public class CharacterTest : MonoBehaviour
     public float answerTime = 0.0f; //出題から回答までの時間をとる
 
 
+
     public void Start()
     {
         sr = GameObject.Find("score").GetComponent<ScoreTest>();
@@ -69,6 +70,7 @@ public class CharacterTest : MonoBehaviour
 
             endTime += getDeltaTime;
 
+
             if (currentTime > span)  //経過時間がスパンより大きくなったら実行
             {
                 currentTime = 0f;   //現在の時間をリセット
@@ -93,7 +95,6 @@ public class CharacterTest : MonoBehaviour
                 sr.AddResult(false);
                 Invoke("MoveReset", 0.5f);
                 Debug.Log((tj.timeJudgeRange[4]) + "経過でミス");
-                endTime = 0;
 
             }
         }
