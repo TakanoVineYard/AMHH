@@ -28,7 +28,7 @@ public class DebugQuestionTime : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        debugQTText.text = "debug"+(at.endTime).ToString();
+        debugQTText.text = "count:" + (Mathf.Floor(at.endTime * 10) / 10).ToString();
 
 
     }

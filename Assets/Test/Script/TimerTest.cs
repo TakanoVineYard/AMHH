@@ -4,13 +4,13 @@ using UnityEngine;
 using UnityEngine.UI; //テキスト使うなら必要？
 using static TimerTest;
 using UnityEngine.SceneManagement; //シーン切り替え
-
+using static CharacterTest;
 
 
 public class TimerTest : MonoBehaviour
 {
 
-    private static int minute = 0; //分
+    //private static int minute = 0; //分
     private static float seconds = 0;　//秒
     private static float oldSeconds = 0; //前のUpdateのときの秒数
 
@@ -22,6 +22,7 @@ public class TimerTest : MonoBehaviour
 
     public  AudioClip soundGameStart;
     public  AudioClip soundGameBGM;
+    public AudioClip soundGameFinish;
 
     AudioSource GameAudioSource; //ゲームBGM
 
@@ -29,6 +30,7 @@ public class TimerTest : MonoBehaviour
     public bool PauseButton = false; //ゲーム一時停止
 
     public bool gameFinish = false;
+    public CharacterTest gamefinish;
 
     //Start is called before the first frame update
     void Start()
@@ -36,7 +38,7 @@ public class TimerTest : MonoBehaviour
 
         //pauseButton = GameObject.Find("PauseButton");
 
-        minute = 0;
+        //minute = 0;
         seconds = 0;
         oldSeconds = 0;
         CountTimer = GetComponentInChildren<Text>(); //ゲーム時間用Textコンポーネント拾ってくるぜ
@@ -82,6 +84,8 @@ public class TimerTest : MonoBehaviour
 
         if ((GameStart == false)&&(gameFinish == true))
         {
+
+            GameAudioSource.PlayOneShot(soundGameFinish); //音再生
             Debug.Log("ゲームとまった");
 
             CountTimer.text = "Finish!!";
@@ -93,7 +97,7 @@ public class TimerTest : MonoBehaviour
 
     public static void GameStartTrigger()
     {
-        minute = 0;
+        //minute = 0;
         seconds = 0;
         oldSeconds = 0;
         GameStart = true;
@@ -101,7 +105,8 @@ public class TimerTest : MonoBehaviour
 
     public void GamePose()　//時間経過後ゲーム止める
     {
-        Time.timeScale = 1;
+        //Time.timeScale = 1;
+        //gamefinish.MoveReset();
         Invoke("DerayGameTitleLoadRun", 4.0f);
 
     }

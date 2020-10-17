@@ -10,7 +10,7 @@ public class CharacterTest : MonoBehaviour
 {
     public Animator CharaAnimator;　//アニメーター用変数
     public Animator ResultAnimator;　//アニメーター用変数
-    bool QuestionStatus = false; //出題状態かどうか
+    public bool QuestionStatus = false; //出題状態かどうか
     GameObject resultObj;  //ゲームオブジェクトResultを入れる用
 
     public bool GameStartTrigger = false; //ゲーム開始の許可用
@@ -265,7 +265,7 @@ public class CharacterTest : MonoBehaviour
     }
 
 
-    private void MoveReset() //出題状態をやめて、アニメーターの状態をIdleに戻す。
+    public void MoveReset() //出題状態をやめて、アニメーターの状態をIdleに戻す。
     {
 
         QuestionStatus = false;
