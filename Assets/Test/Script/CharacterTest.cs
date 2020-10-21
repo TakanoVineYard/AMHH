@@ -76,9 +76,10 @@ public class CharacterTest : MonoBehaviour
                 currentTime = 0f;   //現在の時間をリセット
 
                 //もし出題状態じゃなかったら実行
-                if (QuestionStatus == false)
+                if ((QuestionStatus == false)&&(getDeltaTime != 0))
                 {
-                    MoveSelect(); //方向を選ぶ関数
+
+                    MoveSelect(); //方向を選ぶ関数                    }
 
                 }
                 //もし出題状態だったら実行
@@ -224,7 +225,7 @@ public class CharacterTest : MonoBehaviour
 
 
 
-    private void MoveSelect() //キャラの方向を選ぶ関数
+    public void MoveSelect() //キャラの方向を選ぶ関数
     {
 
         QuestionStatus = true; //出題状態にする

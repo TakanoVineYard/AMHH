@@ -30,7 +30,10 @@ public class TimerTest : MonoBehaviour
     public bool PauseButton = false; //ゲーム一時停止
 
     public bool gameFinish = false;
-    public CharacterTest gamefinish;
+    public bool gameFinishTime = false;
+
+    public float gameSetTime = 30.0f;
+
 
     //Start is called before the first frame update
     void Start()
@@ -51,7 +54,11 @@ public class TimerTest : MonoBehaviour
     //Update is called once per frame
     void Update()
     {
-        getDeltaTime = Time.deltaTime;
+        if (gameFinishTime == false) {
+
+            getDeltaTime = Time.deltaTime;
+
+        }
 
         if ((GameStart == true)&&(gameFinish == false))
         {
@@ -63,8 +70,8 @@ public class TimerTest : MonoBehaviour
 
             seconds += getDeltaTime;
 
-            //↓60秒で1分にリセット
-            if (seconds >= 60)
+            //↓制限時間を過ぎたら
+            if (seconds > gameSetTime)
             {
                 //minute++;
                 //seconds = seconds - 60;
@@ -105,14 +112,15 @@ public class TimerTest : MonoBehaviour
 
     public void GamePose()　//時間経過後ゲーム止める
     {
-        //Time.timeScale = 1;
-        //gamefinish.MoveReset();
+        getDeltaTime = 0;
+        //MoveReset();
+        gameFinishTime = true;
         Invoke("DerayGameTitleLoadRun", 4.0f);
 
     }
 
     public void DerayGameTitleLoadRun()
     {
-        SceneManager.LoadScene("MainTitle");
+        SceneManager.LoadScene("Result");
     }
 }

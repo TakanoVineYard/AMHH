@@ -8,7 +8,8 @@ public class ScoreTest : MonoBehaviour
 {
     public int comboCountNum = 0;
     const float baseScore = 100.0f;
-    public float totalScore = 0.0f;
+    public static float totalScore = 0.0f;
+
 
     public Text comboText;
     public Text scoreText;
@@ -22,7 +23,15 @@ public class ScoreTest : MonoBehaviour
 
     private GameObject ctj;
 
-        
+
+    public static int maxCombo = 0;
+    public static int scoreGreat = 0;
+    public static int scoreGood = 0;
+    public static int scoreBetter = 0;
+    public static int scoreNotBad = 0;
+    public static int scoreBad = 0;
+    public static int scoreMiss = 0;
+
 
     /// <summary>
     /// 成功したか失敗したかを、ゲームを管理するクラスからこいつへ教えてあげる
@@ -64,6 +73,12 @@ public class ScoreTest : MonoBehaviour
             {
                 comboCountNum++;
                // Debug.Log(GetScore());
+
+            if(comboCountNum > maxCombo)
+            {
+                maxCombo = comboCountNum; //マックスコンボの更新
+            }
+
             }
             else if ((success)&&(answerTimeRange > timeJudgeRange[3]))  //成功だが3秒以上かかっててもだめ
             {
@@ -95,31 +110,41 @@ public class ScoreTest : MonoBehaviour
             coefficient = timeJudgeValue[0];
             Debug.Log("Great!" + timeJudgeValue[0]);
             ctj.GetComponent<TextMesh>().text = "Great!";
+            scoreGreat += 1;
+
         }
        else if ((pastAnswerTime > timeJudgeRange[0]) && (pastAnswerTime <= timeJudgeRange[1]) && (successResult))
         {
             coefficient = timeJudgeValue[1];
             Debug.Log("Good" + timeJudgeValue[1]);
             ctj.GetComponent<TextMesh>().text = "Good!";
+            scoreGood += 1;
+
         }
         else if ((pastAnswerTime > timeJudgeRange[1]) && (pastAnswerTime <= timeJudgeRange[2]) && (successResult))
         {
             coefficient = timeJudgeValue[2];
             Debug.Log("better" + timeJudgeValue[2]);
             ctj.GetComponent<TextMesh>().text = "better!";
+            scoreBetter += 1;
+
         }
         else if ((pastAnswerTime > timeJudgeRange[2]) && (pastAnswerTime <= timeJudgeRange[3]) && (successResult))
         {
             coefficient = timeJudgeValue[3];
             ctj.GetComponent<TextMesh>().text = "NotBad";
             Debug.Log("NotBad");
+            scoreNotBad += 1;
+
         }
-       else if ((pastAnswerTime > timeJudgeRange[3]) && (pastAnswerTime <= timeJudgeRange[4]) && (successResult))
+        else if ((pastAnswerTime > timeJudgeRange[3]) && (pastAnswerTime <= timeJudgeRange[4]) && (successResult))
         {
             coefficient = timeJudgeValue[4];
             ctj.GetComponent<TextMesh>().text = "Bad";
 
             Debug.Log("Bad");
+            scoreBad += 1;
+
         }
 
         else if (pastAnswerTime > timeJudgeRange[4])
@@ -129,6 +154,8 @@ public class ScoreTest : MonoBehaviour
             Debug.Log("miss");
             ctj.GetComponent<TextMesh>().text = "miss";
             comboCountNum = 0;
+
+            scoreMiss += 1;
 
         }
         at.endTime = 0;

@@ -2037,6 +2037,10 @@ PrefabInstance:
       propertyPath: soundGameFinish
       value: 
       objectReference: {fileID: 8300000, guid: 575c7ca202b2b4d4bb169fb175402123, type: 3}
+    - target: {fileID: 305729551, guid: bb70b61f7b1362d4fb267698bfdf7d6c, type: 3}
+      propertyPath: gameSetTime
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 540073683, guid: bb70b61f7b1362d4fb267698bfdf7d6c, type: 3}
       propertyPath: at
       value: 
