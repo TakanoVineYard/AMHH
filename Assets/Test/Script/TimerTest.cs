@@ -33,7 +33,7 @@ public class TimerTest : MonoBehaviour
     public bool gameFinishTime = false;
 
     public float gameSetTime = 30.0f;
-
+    float gameTimeOffset = 0;
 
     //Start is called before the first frame update
     void Start()
@@ -47,7 +47,9 @@ public class TimerTest : MonoBehaviour
         CountTimer = GetComponentInChildren<Text>(); //ゲーム時間用Textコンポーネント拾ってくるぜ
         CountTimer.enabled = false;　//
         GameAudioSource = GetComponent<AudioSource>(); //オーディオソースを引っ張る
-
+        gameTimeOffset = getDeltaTime;
+        gameFinish = false;
+        gameFinishTime = false;
     }
 
 
@@ -68,7 +70,7 @@ public class TimerTest : MonoBehaviour
                 GameAudioSource.PlayOneShot(soundGameStart); //音再生
             } //開始時テキストの表示
 
-            seconds += getDeltaTime;
+            seconds += (getDeltaTime - gameTimeOffset);
 
             //↓制限時間を過ぎたら
             if (seconds > gameSetTime)

@@ -941,9 +941,9 @@ SkinnedMeshRenderer:
   - {fileID: -7184819803674296287, guid: a1843e4fc0a845f4ca0a1951ec4d8cd7, type: 3}
   - {fileID: 2100000, guid: bf3202e5207bc154d9a672fd552a8872, type: 2}
   - {fileID: 8627644809163848826, guid: a1843e4fc0a845f4ca0a1951ec4d8cd7, type: 3}
-  - {fileID: -4408438428072430978, guid: a1843e4fc0a845f4ca0a1951ec4d8cd7, type: 3}
+  - {fileID: 2100000, guid: 4f7ad6f8a6580284b9b56a771ed913e2, type: 2}
   - {fileID: -877333816228342888, guid: a1843e4fc0a845f4ca0a1951ec4d8cd7, type: 3}
-  - {fileID: 6341755078290054540, guid: a1843e4fc0a845f4ca0a1951ec4d8cd7, type: 3}
+  - {fileID: 2100000, guid: a38fc43a57306ce4d8356a70b492a440, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

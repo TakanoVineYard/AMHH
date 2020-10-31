@@ -8,6 +8,7 @@ using static SoundTest;
 public class CountDownTimerTest : MonoBehaviour
 {
     public float seconds = 0;　//秒
+    float countDownTimeOffset = 0;
     public int CountDownMin = 3; //カウントダウン整数
     public float CountDownSpan = 1.0f; //カウントダウンの秒スパン
 
@@ -21,6 +22,8 @@ public class CountDownTimerTest : MonoBehaviour
     {
         //GameAudioSource.PlayOneShot(soundCountDown);
         seconds = 0;
+        countDownTimeOffset = getDeltaTime;
+        CountDownMin = 3;
         CountDownTimer = GetComponentInChildren<Text>(); //カウントダウン用Textコンポーネント拾ってくるぜ  
     }
 
@@ -33,7 +36,7 @@ public class CountDownTimerTest : MonoBehaviour
         if (GameStart == false)
         {
 
-            seconds += getDeltaTime;
+            seconds += (getDeltaTime - countDownTimeOffset);
 
             //1秒でリセット
 
