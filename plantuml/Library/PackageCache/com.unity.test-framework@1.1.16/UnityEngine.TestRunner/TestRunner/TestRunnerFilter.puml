@@ -1,0 +1,21 @@
+@startuml
+class TestRunnerFilter {
+    + testRepetitions : int = 1
+    + synchronousOnly : bool = false
+    + {static} AssemblyNameFromPath(path:string) : string
+    + ClearResults(newResultList:List<IClearableResult>) : void
+    + BuildNUnitFilter() : ITestFilter
+}
+interface IClearableResult {
+    Id : string <<get>>
+    FullName : string <<get>>
+    ParentId : string <<get>>
+    IsSuite : bool <<get>>
+    Clear() : void
+}
+class "List`1"<T> {
+}
+TestRunnerFilter o-> "empty" TestRunnerFilter
+TestRunnerFilter +-- IClearableResult
+IClearableResult --> "Categories<string>" "List`1"
+@enduml

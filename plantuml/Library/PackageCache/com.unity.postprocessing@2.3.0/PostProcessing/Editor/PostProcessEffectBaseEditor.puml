@@ -1,0 +1,13 @@
+@startuml
+class PostProcessEffectBaseEditor {
+    + Repaint() : void
+    + <<virtual>> OnEnable() : void
+    + <<virtual>> OnDisable() : void
+    + <<virtual>> OnInspectorGUI() : void
+    + <<virtual>> GetDisplayTitle() : string
+    TopRowFields() : void
+    SetAllOverridesTo(state:bool) : void
+}
+PostProcessEffectBaseEditor --> "m_Enabled" SerializedProperty
+PostProcessEffectBaseEditor --> "m_Inspector" Editor
+@enduml

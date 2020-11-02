@@ -1,0 +1,28 @@
+@startuml
+class PostProcessDebugEditor <<sealed>> {
+    OnEnable() : void
+    RebuildProperties() : void
+    + <<override>> OnInspectorGUI() : void
+    DoMonitorGUI(content:GUIContent, prop:SerializedProperty, settings:SerializedProperty[]) : void
+    DoOverlayGUI(overlay:DebugOverlay, settings:SerializedProperty[]) : void
+}
+class "BaseEditor`1"<T> {
+}
+"BaseEditor`1" "<PostProcessDebug>" <|-- PostProcessDebugEditor
+PostProcessDebugEditor --> "m_PostProcessLayer" SerializedProperty
+PostProcessDebugEditor --> "m_LightMeterEnabled" SerializedProperty
+PostProcessDebugEditor --> "m_HistogramEnabled" SerializedProperty
+PostProcessDebugEditor --> "m_WaveformEnabled" SerializedProperty
+PostProcessDebugEditor --> "m_VectorscopeEnabled" SerializedProperty
+PostProcessDebugEditor --> "m_Overlay" SerializedProperty
+PostProcessDebugEditor --> "m_LayerObject" SerializedObject
+PostProcessDebugEditor --> "m_LightMeterShowCurves" SerializedProperty
+PostProcessDebugEditor --> "m_HistogramChannel" SerializedProperty
+PostProcessDebugEditor --> "m_WaveformExposure" SerializedProperty
+PostProcessDebugEditor --> "m_VectorscopeExposure" SerializedProperty
+PostProcessDebugEditor --> "m_LinearDepth" SerializedProperty
+PostProcessDebugEditor --> "m_MotionColorIntensity" SerializedProperty
+PostProcessDebugEditor --> "m_MotionGridSize" SerializedProperty
+PostProcessDebugEditor --> "m_ColorBlindness" SerializedProperty
+PostProcessDebugEditor --> "m_ColorBlindnessStrength" SerializedProperty
+@enduml

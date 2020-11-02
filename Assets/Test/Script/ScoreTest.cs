@@ -6,7 +6,7 @@ using static UnityEngine.GameObject;
 
 public class ScoreTest : MonoBehaviour
 {
-    public int comboCountNum = 0;
+    public  int comboCountNum = 0;
     const float baseScore = 100.0f;
     public static float totalScore = 0.0f;
 
@@ -50,7 +50,7 @@ public class ScoreTest : MonoBehaviour
         Debug.Log(comboText);
         Debug.Log(scoreText);
 
-        at = GameObject.Find("CharacterAll").GetComponent<CharacterTest>();
+        at = GameObject.Find("ThendBear").GetComponent<CharacterTest>();
         ctj = GameObject.Find("correctTimeJudge"); 
 
     }
@@ -59,6 +59,20 @@ public class ScoreTest : MonoBehaviour
     public void Update()
     {
 
+        //ゲーム始まってないし、終わってない間　リセット
+        if ((TimerTest.GameStart == false)&&(TimerTest.gameFinish == false )){
+
+            totalScore = 0;
+            comboCountNum = 0;
+            maxCombo = 0;
+            scoreGreat = 0;
+            scoreGood = 0;
+            scoreBetter = 0;
+            scoreNotBad = 0;
+            scoreBad = 0;
+            scoreMiss = 0;  
+
+        }
 
     }
 

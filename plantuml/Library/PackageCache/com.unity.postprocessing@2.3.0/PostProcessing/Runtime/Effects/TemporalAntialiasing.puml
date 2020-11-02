@@ -1,0 +1,29 @@
+@startuml
+class TemporalAntialiasing <<sealed>> {
+    + jitterSpread : float = 0.75f
+    + sharpness : float = 0.25f
+    + stationaryBlending : float = 0.95f
+    + motionBlending : float = 0.85f
+    m_ResetHistory : bool = true
+    <<const>> k_SampleCount : int = 8
+    + sampleIndex : int <<get>>
+    <<const>> k_NumEyes : int = 2
+    <<const>> k_NumHistoryTextures : int = 2
+    + IsSupported() : bool
+    GenerateRandomOffset() : Vector2
+    + GetJitteredProjectionMatrix(camera:Camera) : Matrix4x4
+    + ConfigureJitteredProjectionMatrix(context:PostProcessRenderContext) : void
+    + ConfigureStereoJitteredProjectionMatrices(context:PostProcessRenderContext) : void
+    GenerateHistoryName(rt:RenderTexture, id:int, context:PostProcessRenderContext) : void
+    CheckHistory(id:int, context:PostProcessRenderContext) : RenderTexture
+}
+class "Func`3"<T1,T2,T3> {
+}
+enum Pass {
+    SolverDilate,
+    SolverNoDilate,
+}
+TemporalAntialiasing --> "jitteredMatrixFunc<Camera,Vector2,Matrix4x4>" "Func`3"
+TemporalAntialiasing --> "jitter" Vector2
+TemporalAntialiasing +-- Pass
+@enduml

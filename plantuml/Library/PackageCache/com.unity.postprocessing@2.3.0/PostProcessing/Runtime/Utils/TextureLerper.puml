@@ -1,0 +1,14 @@
+@startuml
+class TextureLerper {
+    TextureLerper()
+    Get(format:RenderTextureFormat, w:int, h:int, d:int, enableRandomWrite:bool, force3D:bool) : RenderTexture
+}
+class "List`1"<T> {
+}
+TextureLerper --> "m_Instance" TextureLerper
+TextureLerper --> "m_Command" CommandBuffer
+TextureLerper --> "m_PropertySheets" PropertySheetFactory
+TextureLerper --> "m_Resources" PostProcessResources
+TextureLerper --> "m_Recycled<RenderTexture>" "List`1"
+TextureLerper --> "m_Actives<RenderTexture>" "List`1"
+@enduml

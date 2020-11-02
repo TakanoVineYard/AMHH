@@ -1,0 +1,25 @@
+@startuml
+class TestRunnerWindow {
+    + {static} ShowPlaymodeTestsRunnerWindowCodeBased() : void
+    {static} TestRunnerWindow()
+    + OnDestroy() : void
+    + OnGUI() : void
+    + AddItemsToMenu(menu:GenericMenu) : void
+    + RebuildUIFilter() : void
+    + {static} UpdateWindow() : void
+}
+class Styles <<static>> {
+    {static} Styles()
+}
+enum TestRunnerMenuLabels {
+    PlayMode= 0,
+    EditMode= 1,
+}
+EditorWindow <|-- TestRunnerWindow
+IHasCustomMenu <|-- TestRunnerWindow
+TestRunnerWindow --> "filterSettings" TestFilterSettings
+TestRunnerWindow +-- Styles
+Styles --> "info" GUIStyle
+Styles --> "testList" GUIStyle
+TestRunnerWindow +-- TestRunnerMenuLabels
+@enduml

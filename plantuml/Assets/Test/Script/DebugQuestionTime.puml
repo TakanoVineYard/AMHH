@@ -1,0 +1,9 @@
+@startuml
+class DebugQuestionTime {
+    Start() : void
+    Update() : void
+}
+MonoBehaviour <|-- DebugQuestionTime
+DebugQuestionTime --> "at" CharacterTest
+DebugQuestionTime --> "debugQTText" Text
+@enduml

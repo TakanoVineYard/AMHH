@@ -1,0 +1,15 @@
+@startuml
+class TrackballDecorator <<sealed>> {
+    {static} <<readonly>> k_ThumbHash : int
+    m_ResetState : bool
+    + <<override>> IsAutoProperty() : bool
+    + <<override>> OnGUI(property:SerializedProperty, overrideState:SerializedProperty, title:GUIContent, attribute:Attribute) : bool
+    DrawWheel(value:Vector4, overrideState:bool, attr:TrackballAttribute) : void
+    DrawLabelAndOverride(title:GUIContent, overrideState:SerializedProperty) : void
+    GetInput(bounds:Rect, hsv:Vector3, thumbPos:Vector2, radius:float) : Vector3
+    GetWheelHueSaturation(x:float, y:float, radius:float, hue:float, saturation:float) : void
+}
+AttributeDecorator <|-- TrackballDecorator
+TrackballDecorator --> "s_Material" Material
+TrackballDecorator --> "m_CursorPos" Vector2
+@enduml

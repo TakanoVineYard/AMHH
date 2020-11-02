@@ -1,0 +1,27 @@
+@startuml
+class ScalableAO <<sealed>> {
+    + ScalableAO(settings:AmbientOcclusion)
+    + GetCameraFlags() : DepthTextureMode
+    DoLazyInitialization(context:PostProcessRenderContext) : void
+    Render(context:PostProcessRenderContext, cmd:CommandBuffer, occlusionSource:int) : void
+    + RenderAfterOpaque(context:PostProcessRenderContext) : void
+    + RenderAmbientOnly(context:PostProcessRenderContext) : void
+    + CompositeAmbientOnly(context:PostProcessRenderContext) : void
+    + Release() : void
+}
+enum Pass {
+    OcclusionEstimationForward,
+    OcclusionEstimationDeferred,
+    HorizontalBlurForward,
+    HorizontalBlurDeferred,
+    VerticalBlur,
+    CompositionForward,
+    CompositionDeferred,
+    DebugOverlay,
+}
+IAmbientOcclusionMethod <|-- ScalableAO
+ScalableAO --> "m_Result" RenderTexture
+ScalableAO --> "m_PropertySheet" PropertySheet
+ScalableAO --> "m_Settings" AmbientOcclusion
+ScalableAO +-- Pass
+@enduml

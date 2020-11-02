@@ -1,0 +1,12 @@
+@startuml
+class GondaSan {
+    cullentTime : int = 0
+    cullentTimePast : int = 0
+    Start() : void
+    Update() : void
+    AddCullentTimePast() : void
+}
+Ningen <|-- GondaSan
+GondaSan o-> "timePastIkimono" Ikimono
+GondaSan o-> "gondaName" Ningen
+@enduml

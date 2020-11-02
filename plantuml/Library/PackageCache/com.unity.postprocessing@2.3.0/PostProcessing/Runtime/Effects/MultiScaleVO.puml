@@ -1,0 +1,49 @@
+@startuml
+class MultiScaleVO <<sealed>> {
+    + MultiScaleVO(settings:AmbientOcclusion)
+    + GetCameraFlags() : DepthTextureMode
+    + SetResources(resources:PostProcessResources) : void
+    Alloc(cmd:CommandBuffer, id:int, size:MipLevel, format:RenderTextureFormat, uav:bool) : void
+    AllocArray(cmd:CommandBuffer, id:int, size:MipLevel, format:RenderTextureFormat, uav:bool) : void
+    Release(cmd:CommandBuffer, id:int) : void
+    CalculateZBufferParams(camera:Camera) : Vector4
+    CalculateTanHalfFovHeight(camera:Camera) : float
+    GetSize(mip:MipLevel) : Vector2
+    GetSizeArray(mip:MipLevel) : Vector3
+    + GenerateAOMap(cmd:CommandBuffer, camera:Camera, destination:RenderTargetIdentifier, depthMap:RenderTargetIdentifier?, invert:bool, isMSAA:bool) : void
+    PushAllocCommands(cmd:CommandBuffer, isMSAA:bool) : void
+    PushDownsampleCommands(cmd:CommandBuffer, camera:Camera, depthMap:RenderTargetIdentifier?, isMSAA:bool) : void
+    PushRenderCommands(cmd:CommandBuffer, source:int, destination:int, sourceSize:Vector3, tanHalfFovH:float, isMSAA:bool) : void
+    PushUpsampleCommands(cmd:CommandBuffer, lowResDepth:int, interleavedAO:int, highResDepth:int, highResAO:int?, dest:RenderTargetIdentifier, lowResDepthSize:Vector3, highResDepthSize:Vector2, isMSAA:bool, invert:bool) : void
+    PushReleaseCommands(cmd:CommandBuffer) : void
+    PreparePropertySheet(context:PostProcessRenderContext) : void
+    CheckAOTexture(context:PostProcessRenderContext) : void
+    PushDebug(context:PostProcessRenderContext) : void
+    + RenderAfterOpaque(context:PostProcessRenderContext) : void
+    + RenderAmbientOnly(context:PostProcessRenderContext) : void
+    + CompositeAmbientOnly(context:PostProcessRenderContext) : void
+    + Release() : void
+}
+enum MipLevel {
+    Original,
+    L1,
+    L2,
+    L3,
+    L4,
+    L5,
+    L6,
+}
+enum Pass {
+    DepthCopy,
+    CompositionDeferred,
+    CompositionForward,
+    DebugOverlay,
+}
+IAmbientOcclusionMethod <|-- MultiScaleVO
+MultiScaleVO --> "m_Settings" AmbientOcclusion
+MultiScaleVO --> "m_PropertySheet" PropertySheet
+MultiScaleVO --> "m_Resources" PostProcessResources
+MultiScaleVO --> "m_AmbientOnlyAO" RenderTexture
+MultiScaleVO +-- MipLevel
+MultiScaleVO +-- Pass
+@enduml

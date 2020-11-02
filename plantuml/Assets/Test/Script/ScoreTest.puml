@@ -1,0 +1,23 @@
+@startuml
+class ScoreTest {
+    + comboCountNum : int = 0
+    <<const>> baseScore : float = 100.0f
+    + {static} totalScore : float = 0.0f
+    + successResult : bool
+    + {static} maxCombo : int = 0
+    + {static} scoreGreat : int = 0
+    + {static} scoreGood : int = 0
+    + {static} scoreBetter : int = 0
+    + {static} scoreNotBad : int = 0
+    + {static} scoreBad : int = 0
+    + {static} scoreMiss : int = 0
+    + Start() : void
+    + Update() : void
+    + AddResult(success:bool) : void
+    + GetScore(pastAnswerTime:float) : float
+}
+MonoBehaviour <|-- ScoreTest
+ScoreTest --> "comboText" Text
+ScoreTest --> "scoreText" Text
+ScoreTest --> "at" CharacterTest
+@enduml

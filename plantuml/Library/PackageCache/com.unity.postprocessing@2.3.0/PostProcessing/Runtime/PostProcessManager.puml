@@ -1,0 +1,30 @@
+@startuml
+class PostProcessManager <<sealed>> {
+    <<const>> k_MaxLayerCount : int = 32
+    PostProcessManager()
+    CleanBaseTypes() : void
+    ReloadBaseTypes() : void
+    + GetActiveVolumes(layer:PostProcessLayer, results:List<PostProcessVolume>, skipDisabled:bool, skipZeroWeight:bool) : void
+    + GetHighestPriorityVolume(layer:PostProcessLayer) : PostProcessVolume
+    + GetHighestPriorityVolume(mask:LayerMask) : PostProcessVolume
+    + QuickVolume(layer:int, priority:float, settings:PostProcessEffectSettings[]) : PostProcessVolume
+    Register(volume:PostProcessVolume, layer:int) : void
+    Unregister(volume:PostProcessVolume, layer:int) : void
+    ReplaceData(postProcessLayer:PostProcessLayer) : void
+    GrabVolumes(mask:LayerMask) : List<PostProcessVolume>
+    {static} SortByPriority(volumes:List<PostProcessVolume>) : void
+    {static} IsVolumeRenderedByCamera(volume:PostProcessVolume, camera:Camera) : bool
+}
+class "Dictionary`2"<T1,T2> {
+}
+class "List`1"<T> {
+}
+PostProcessManager --> "s_Instance" PostProcessManager
+PostProcessManager --> "instance" PostProcessManager
+PostProcessManager --> "m_SortedVolumes<int,List<PostProcessVolume>>" "Dictionary`2"
+PostProcessManager --> "m_Volumes<PostProcessVolume>" "List`1"
+PostProcessManager --> "m_SortNeeded<int,bool>" "Dictionary`2"
+PostProcessManager --> "m_BaseSettings<PostProcessEffectSettings>" "List`1"
+PostProcessManager --> "m_TempColliders<Collider>" "List`1"
+PostProcessManager --> "settingsTypes<Type,PostProcessAttribute>" "Dictionary`2"
+@enduml

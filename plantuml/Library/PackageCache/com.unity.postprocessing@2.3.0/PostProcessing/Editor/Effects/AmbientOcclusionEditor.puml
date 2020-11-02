@@ -1,0 +1,17 @@
+@startuml
+class AmbientOcclusionEditor <<sealed>> {
+    + <<override>> OnEnable() : void
+    + <<override>> OnInspectorGUI() : void
+}
+class "PostProcessEffectEditor`1"<T> {
+}
+"PostProcessEffectEditor`1" "<AmbientOcclusion>" <|-- AmbientOcclusionEditor
+AmbientOcclusionEditor --> "m_Mode" SerializedParameterOverride
+AmbientOcclusionEditor --> "m_Intensity" SerializedParameterOverride
+AmbientOcclusionEditor --> "m_Color" SerializedParameterOverride
+AmbientOcclusionEditor --> "m_AmbientOnly" SerializedParameterOverride
+AmbientOcclusionEditor --> "m_ThicknessModifier" SerializedParameterOverride
+AmbientOcclusionEditor --> "m_DirectLightingStrength" SerializedParameterOverride
+AmbientOcclusionEditor --> "m_Quality" SerializedParameterOverride
+AmbientOcclusionEditor --> "m_Radius" SerializedParameterOverride
+@enduml

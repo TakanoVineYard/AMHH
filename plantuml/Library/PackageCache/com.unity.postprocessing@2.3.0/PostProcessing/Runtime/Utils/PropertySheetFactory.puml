@@ -1,0 +1,11 @@
+@startuml
+class PropertySheetFactory <<sealed>> {
+    + PropertySheetFactory()
+    + Get(shaderName:string) : PropertySheet
+    + Get(shader:Shader) : PropertySheet
+    + Release() : void
+}
+class "Dictionary`2"<T1,T2> {
+}
+PropertySheetFactory --> "m_Sheets<Shader,PropertySheet>" "Dictionary`2"
+@enduml

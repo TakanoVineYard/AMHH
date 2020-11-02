@@ -1,0 +1,10 @@
+@startuml
+class ShaderPropAnimator {
+    + m_frame : float
+    Awake() : void
+    Start() : void
+    AnimateProperties() : IEnumerator
+}
+MonoBehaviour <|-- ShaderPropAnimator
+ShaderPropAnimator --> "GlowCurve" AnimationCurve
+@enduml

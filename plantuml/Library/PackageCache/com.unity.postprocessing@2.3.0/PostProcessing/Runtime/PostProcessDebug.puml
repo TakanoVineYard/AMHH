@@ -1,0 +1,22 @@
+@startuml
+class PostProcessDebug <<sealed>> {
+    + lightMeter : bool
+    + histogram : bool
+    + waveform : bool
+    + vectorscope : bool
+    OnEnable() : void
+    OnDisable() : void
+    Update() : void
+    Reset() : void
+    UpdateStates() : void
+    OnPostRender() : void
+    OnGUI() : void
+    DrawMonitor(rect:Rect, monitor:Monitor, enabled:bool) : void
+}
+MonoBehaviour <|-- PostProcessDebug
+PostProcessDebug --> "postProcessLayer" PostProcessLayer
+PostProcessDebug --> "m_PreviousPostProcessLayer" PostProcessLayer
+PostProcessDebug o-> "debugOverlay" DebugOverlay
+PostProcessDebug --> "m_CurrentCamera" Camera
+PostProcessDebug --> "m_CmdAfterEverything" CommandBuffer
+@enduml

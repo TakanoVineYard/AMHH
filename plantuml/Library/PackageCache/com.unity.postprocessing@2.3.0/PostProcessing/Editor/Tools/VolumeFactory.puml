@@ -1,0 +1,5 @@
+@startuml
+class VolumeFactory <<static>> {
+    {static} CreateVolume() : void
+}
+@enduml

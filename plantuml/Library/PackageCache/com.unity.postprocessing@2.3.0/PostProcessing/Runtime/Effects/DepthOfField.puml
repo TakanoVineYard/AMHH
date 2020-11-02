@@ -1,0 +1,49 @@
+@startuml
+enum KernelSize {
+    Small,
+    Medium,
+    Large,
+    VeryLarge,
+}
+class KernelSizeParameter <<sealed>> {
+}
+class DepthOfField <<sealed>> {
+    + <<override>> IsEnabledAndSupported(context:PostProcessRenderContext) : bool
+}
+class DepthOfFieldRenderer <<sealed>> {
+    <<const>> k_NumEyes : int = 2
+    <<const>> k_NumCoCHistoryTextures : int = 2
+    <<const>> k_FilmHeight : float = 0.024f
+    + DepthOfFieldRenderer()
+    + <<override>> GetCameraFlags() : DepthTextureMode
+    SelectFormat(primary:RenderTextureFormat, secondary:RenderTextureFormat) : RenderTextureFormat
+    CalculateMaxCoCRadius(screenHeight:int) : float
+    CheckHistory(eye:int, id:int, context:PostProcessRenderContext, format:RenderTextureFormat) : RenderTexture
+    + <<override>> Render(context:PostProcessRenderContext) : void
+    + <<override>> Release() : void
+}
+class "ParameterOverride`1"<T> {
+}
+class "PostProcessEffectRenderer`1"<T> {
+}
+enum Pass {
+    CoCCalculation,
+    CoCTemporalFilter,
+    DownsampleAndPrefilter,
+    BokehSmallKernel,
+    BokehMediumKernel,
+    BokehLargeKernel,
+    BokehVeryLargeKernel,
+    PostFilter,
+    Combine,
+    DebugOverlay,
+}
+"ParameterOverride`1" "<KernelSize>" <|-- KernelSizeParameter
+PostProcessEffectSettings <|-- DepthOfField
+DepthOfField o-> "focusDistance" FloatParameter
+DepthOfField o-> "aperture" FloatParameter
+DepthOfField o-> "focalLength" FloatParameter
+DepthOfField o-> "kernelSize" KernelSizeParameter
+"PostProcessEffectRenderer`1" "<DepthOfField>" <|-- DepthOfFieldRenderer
+DepthOfFieldRenderer +-- Pass
+@enduml

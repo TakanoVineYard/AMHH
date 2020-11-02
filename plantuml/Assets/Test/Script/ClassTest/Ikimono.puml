@@ -1,0 +1,12 @@
+@startuml
+class Ikimono {
+    + lifeVal : int = 1
+    + Jumyo : float = 1.0f
+    + ageSpan : int = 5
+    + {static} timePast : float = 0
+    + {static} timePastInt : int = 0
+    Start() : void
+    Update() : void
+}
+MonoBehaviour <|-- Ikimono
+@enduml

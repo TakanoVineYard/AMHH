@@ -1,0 +1,18 @@
+@startuml
+class PostProcessVolumeEditor <<sealed>> {
+    OnEnable() : void
+    OnDisable() : void
+    RefreshEffectListEditor(asset:PostProcessProfile) : void
+    + <<override>> OnInspectorGUI() : void
+}
+class "BaseEditor`1"<T> {
+}
+"BaseEditor`1" "<PostProcessVolume>" <|-- PostProcessVolumeEditor
+PostProcessVolumeEditor --> "m_Profile" SerializedProperty
+PostProcessVolumeEditor --> "m_IsGlobal" SerializedProperty
+PostProcessVolumeEditor --> "m_BlendRadius" SerializedProperty
+PostProcessVolumeEditor --> "m_Weight" SerializedProperty
+PostProcessVolumeEditor --> "m_Priority" SerializedProperty
+PostProcessVolumeEditor --> "m_EffectList" EffectListEditor
+PostProcessVolumeEditor --> "profileRef" PostProcessProfile
+@enduml

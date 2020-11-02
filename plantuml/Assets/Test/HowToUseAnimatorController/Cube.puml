@@ -1,0 +1,7 @@
+@startuml
+class Cube {
+    Start() : void
+    Update() : void
+}
+MonoBehaviour <|-- Cube
+@enduml

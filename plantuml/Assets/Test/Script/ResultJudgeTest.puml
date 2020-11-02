@@ -1,0 +1,18 @@
+@startuml
+class ResultJudgeTest {
+    + Start() : void
+    Update() : void
+    + ShowResult() : void
+    + TapToBackTitleButton() : void
+    + DerayGameLoadRun() : void
+}
+MonoBehaviour <|-- ResultJudgeTest
+ResultJudgeTest --> "resultMaxComboObj" GameObject
+ResultJudgeTest --> "resultScoreTextObj" GameObject
+ResultJudgeTest --> "resultScoreGreatObj" GameObject
+ResultJudgeTest --> "resultScoreGoodObj" GameObject
+ResultJudgeTest --> "resultScoreBetterObj" GameObject
+ResultJudgeTest --> "resultScoreNotBadObj" GameObject
+ResultJudgeTest --> "resultScoreBadObj" GameObject
+ResultJudgeTest --> "resultScoreMissObj" GameObject
+@enduml

@@ -1,0 +1,5 @@
+@startuml
+class PostProcessShaderIncludePath <<static>> {
+    + {static} GetPaths() : string[]
+}
+@enduml

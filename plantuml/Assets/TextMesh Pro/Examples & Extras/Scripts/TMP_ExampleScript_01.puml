@@ -1,0 +1,14 @@
+@startuml
+class TMP_ExampleScript_01 {
+    + isStatic : bool
+    Awake() : void
+    Update() : void
+}
+enum objectType {
+    TextMeshPro= 0,
+    TextMeshProUGUI= 1,
+}
+MonoBehaviour <|-- TMP_ExampleScript_01
+TMP_ExampleScript_01 --> "ObjectType" objectType
+TMP_ExampleScript_01 +-- objectType
+@enduml

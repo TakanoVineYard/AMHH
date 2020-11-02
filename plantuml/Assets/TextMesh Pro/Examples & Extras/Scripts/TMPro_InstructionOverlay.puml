@@ -1,0 +1,15 @@
+@startuml
+class TMPro_InstructionOverlay {
+    Awake() : void
+    Set_FrameCounter_Position(anchor_position:FpsCounterAnchorPositions) : void
+}
+enum FpsCounterAnchorPositions {
+    TopLeft,
+    BottomLeft,
+    TopRight,
+    BottomRight,
+}
+MonoBehaviour <|-- TMPro_InstructionOverlay
+TMPro_InstructionOverlay o-> "AnchorPosition" FpsCounterAnchorPositions
+TMPro_InstructionOverlay +-- FpsCounterAnchorPositions
+@enduml

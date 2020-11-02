@@ -1,0 +1,5 @@
+@startuml
+class ResourceAssetFactory <<static>> {
+    {static} CreateAsset() : void
+}
+@enduml

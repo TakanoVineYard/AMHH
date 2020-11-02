@@ -1,0 +1,16 @@
+@startuml
+class AutoExposureEditor <<sealed>> {
+    + <<override>> OnEnable() : void
+    + <<override>> OnInspectorGUI() : void
+}
+class "PostProcessEffectEditor`1"<T> {
+}
+"PostProcessEffectEditor`1" "<AutoExposure>" <|-- AutoExposureEditor
+AutoExposureEditor --> "m_Filtering" SerializedParameterOverride
+AutoExposureEditor --> "m_MinLuminance" SerializedParameterOverride
+AutoExposureEditor --> "m_MaxLuminance" SerializedParameterOverride
+AutoExposureEditor --> "m_KeyValue" SerializedParameterOverride
+AutoExposureEditor --> "m_EyeAdaptation" SerializedParameterOverride
+AutoExposureEditor --> "m_SpeedUp" SerializedParameterOverride
+AutoExposureEditor --> "m_SpeedDown" SerializedParameterOverride
+@enduml

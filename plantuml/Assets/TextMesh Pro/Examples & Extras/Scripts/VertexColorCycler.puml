@@ -1,0 +1,8 @@
+@startuml
+class VertexColorCycler {
+    Awake() : void
+    Start() : void
+    AnimateVertexColors() : IEnumerator
+}
+MonoBehaviour <|-- VertexColorCycler
+@enduml

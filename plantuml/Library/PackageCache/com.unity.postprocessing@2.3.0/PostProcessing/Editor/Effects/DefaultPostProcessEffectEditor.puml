@@ -1,0 +1,10 @@
+@startuml
+class DefaultPostProcessEffectEditor {
+    + <<override>> OnEnable() : void
+    + <<override>> OnInspectorGUI() : void
+}
+class "List`1"<T> {
+}
+PostProcessEffectBaseEditor <|-- DefaultPostProcessEffectEditor
+DefaultPostProcessEffectEditor --> "m_Parameters<SerializedParameterOverride>" "List`1"
+@enduml

@@ -1,0 +1,7 @@
+@startuml
+class TeleType {
+    Awake() : void
+    Start() : IEnumerator
+}
+MonoBehaviour <|-- TeleType
+@enduml

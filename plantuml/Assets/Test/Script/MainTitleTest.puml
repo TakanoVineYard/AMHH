@@ -1,0 +1,12 @@
+@startuml
+class MainTitleTest {
+    Start() : void
+    Update() : void
+    + TapStartButton() : void
+    + DerayGameLoadRun() : void
+}
+class MainTitleTest2 {
+}
+MonoBehaviour <|-- MainTitleTest
+MonoBehaviour <|-- MainTitleTest2
+@enduml

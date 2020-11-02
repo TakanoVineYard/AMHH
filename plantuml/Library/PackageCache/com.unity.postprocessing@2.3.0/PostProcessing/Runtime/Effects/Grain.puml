@@ -1,0 +1,21 @@
+@startuml
+class Grain <<sealed>> {
+    + <<override>> IsEnabledAndSupported(context:PostProcessRenderContext) : bool
+}
+class GrainRenderer <<sealed>> {
+    <<const>> k_SampleCount : int = 1024
+    m_SampleIndex : int
+    + <<override>> Render(context:PostProcessRenderContext) : void
+    GetLookupFormat() : RenderTextureFormat
+    + <<override>> Release() : void
+}
+class "PostProcessEffectRenderer`1"<T> {
+}
+PostProcessEffectSettings <|-- Grain
+Grain o-> "colored" BoolParameter
+Grain o-> "intensity" FloatParameter
+Grain o-> "size" FloatParameter
+Grain o-> "lumContrib" FloatParameter
+"PostProcessEffectRenderer`1" "<Grain>" <|-- GrainRenderer
+GrainRenderer --> "m_GrainLookupRT" RenderTexture
+@enduml

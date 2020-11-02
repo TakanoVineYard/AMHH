@@ -1,0 +1,12 @@
+@startuml
+class CubeLutAssetImporter <<sealed>> {
+    {static} OnPostprocessAllAssets(imported:string[], deleted:string[], moved:string[], movedFrom:string[]) : void
+    {static} ImportCubeLut(path:string) : void
+    {static} FilterLine(line:string) : string
+    {static} ParseDomain(i:int, line:string, domain:Color) : bool
+}
+class "List`1"<T> {
+}
+AssetPostprocessor <|-- CubeLutAssetImporter
+CubeLutAssetImporter o-> "s_Excluded<string>" "List`1"
+@enduml

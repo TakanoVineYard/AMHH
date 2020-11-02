@@ -1,0 +1,25 @@
+@startuml
+class EffectListEditor <<sealed>> {
+    + EffectListEditor(editor:Editor)
+    + Init(asset:PostProcessProfile, serializedObject:SerializedObject) : void
+    OnUndoRedoPerformed() : void
+    CreateEditor(settings:PostProcessEffectSettings, property:SerializedProperty, index:int) : void
+    RefreshEditors() : void
+    + Clear() : void
+    + OnGUI() : void
+    AddEffectOverride(type:Type) : void
+    RemoveEffectOverride(id:int) : void
+    ResetEffectOverride(type:Type, id:int) : void
+    CreateNewEffect(type:Type) : PostProcessEffectSettings
+}
+class "Dictionary`2"<T1,T2> {
+}
+class "List`1"<T> {
+}
+EffectListEditor --> "asset" PostProcessProfile
+EffectListEditor --> "m_BaseEditor" Editor
+EffectListEditor --> "m_SerializedObject" SerializedObject
+EffectListEditor --> "m_SettingsProperty" SerializedProperty
+EffectListEditor --> "m_EditorTypes<Type,Type>" "Dictionary`2"
+EffectListEditor --> "m_Editors<PostProcessEffectBaseEditor>" "List`1"
+@enduml

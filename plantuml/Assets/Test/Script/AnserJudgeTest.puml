@@ -1,0 +1,7 @@
+@startuml
+class AnserJudgeTest {
+    Start() : void
+    Update() : void
+}
+MonoBehaviour <|-- AnserJudgeTest
+@enduml

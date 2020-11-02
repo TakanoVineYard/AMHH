@@ -1,0 +1,29 @@
+@startuml
+class CharacterTest {
+    + QuestionStatus : bool = false
+    + hogehoge : bool = false
+    + GameStartTrigger : bool = false
+    + span : float = 0.0f
+    + elapsedTime : float
+    + currentTime : float = 0.0f
+    + MoveResetSpan : float = 5.1f
+    + startTime : float = 0.0f
+    + endTime : float = 0.0f
+    + answerTime : float = 0.0f
+    + Start() : void
+    + Update() : void
+    + JudgeL() : void
+    + JudgeR() : void
+    + JudgeU() : void
+    + JudgeD() : void
+    + MoveSelect() : void
+    + MoveReset() : void
+    + GetAnswerTime() : float
+}
+MonoBehaviour <|-- CharacterTest
+CharacterTest --> "CharaAnimator" Animator
+CharacterTest --> "ResultAnimator" Animator
+CharacterTest --> "resultObj" GameObject
+CharacterTest --> "sr" ScoreTest
+CharacterTest --> "tj" ScoreTest
+@enduml

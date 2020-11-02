@@ -1,0 +1,19 @@
+@startuml
+class HistogramMonitor <<sealed>> {
+    + width : int = 512
+    + height : int = 256
+    <<const>> k_NumBins : int = 256
+    <<const>> k_ThreadGroupSizeX : int = 16
+    <<const>> k_ThreadGroupSizeY : int = 16
+}
+enum Channel {
+    Red,
+    Green,
+    Blue,
+    Master,
+}
+Monitor <|-- HistogramMonitor
+HistogramMonitor o-> "channel" Channel
+HistogramMonitor --> "m_Data" ComputeBuffer
+HistogramMonitor +-- Channel
+@enduml

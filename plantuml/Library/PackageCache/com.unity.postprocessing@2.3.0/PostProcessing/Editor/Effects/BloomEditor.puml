@@ -1,0 +1,19 @@
+@startuml
+class BloomEditor <<sealed>> {
+    + <<override>> OnEnable() : void
+    + <<override>> OnInspectorGUI() : void
+}
+class "PostProcessEffectEditor`1"<T> {
+}
+"PostProcessEffectEditor`1" "<Bloom>" <|-- BloomEditor
+BloomEditor --> "m_Intensity" SerializedParameterOverride
+BloomEditor --> "m_Threshold" SerializedParameterOverride
+BloomEditor --> "m_SoftKnee" SerializedParameterOverride
+BloomEditor --> "m_Clamp" SerializedParameterOverride
+BloomEditor --> "m_Diffusion" SerializedParameterOverride
+BloomEditor --> "m_AnamorphicRatio" SerializedParameterOverride
+BloomEditor --> "m_Color" SerializedParameterOverride
+BloomEditor --> "m_FastMode" SerializedParameterOverride
+BloomEditor --> "m_DirtTexture" SerializedParameterOverride
+BloomEditor --> "m_DirtIntensity" SerializedParameterOverride
+@enduml

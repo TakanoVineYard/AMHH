@@ -1,0 +1,12 @@
+@startuml
+class TextureFormatUtilities <<static>> {
+    {static} TextureFormatUtilities()
+    {static} IsObsolete(value:object) : bool
+    + {static} GetUncompressedRenderTextureFormat(texture:Texture) : RenderTextureFormat
+}
+class "Dictionary`2"<T1,T2> {
+}
+TextureFormatUtilities --> "s_FormatAliasMap<int,RenderTextureFormat>" "Dictionary`2"
+TextureFormatUtilities --> "s_SupportedRenderTextureFormats<int,bool>" "Dictionary`2"
+TextureFormatUtilities --> "s_SupportedTextureFormats<int,bool>" "Dictionary`2"
+@enduml

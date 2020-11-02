@@ -1,0 +1,10 @@
+@startuml
+class Ningen {
+    + <<new>> name : string
+    + age : int
+    + {static} scientificName : string = "人間"
+    Start() : void
+    Update() : void
+}
+Ikimono <|-- Ningen
+@enduml

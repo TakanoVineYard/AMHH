@@ -4,7 +4,13 @@ using UnityEngine;
 using UnityEngine.SceneManagement; //シーン切り替え
 public class MainTitleTest : MonoBehaviour
 {
+
+
     
+
+
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -30,3 +36,5 @@ public class MainTitleTest : MonoBehaviour
         SceneManager.LoadScene("Test_ButtonTap");
     }
 }
+
+

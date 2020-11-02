@@ -1,0 +1,16 @@
+@startuml
+class StateLarningTest {
+    + <<virtual>> OnUpdate() : void
+    + {static} second : float = 0f
+    Update() : void
+}
+class StateInitialize {
+    + <<override>> OnUpdate() : void
+}
+class GameManage {
+    + ChangeStateInitialize() : void
+}
+MonoBehaviour <|-- StateLarningTest
+StateLarningTest <|-- StateInitialize
+MonoBehaviour <|-- GameManage
+@enduml

@@ -1,0 +1,91 @@
+@startuml
+class PostProcessLayer <<sealed>> {
+    + stopNaNPropagation : bool = true
+    + finalBlitToCameraTarget : bool = false
+    m_ShowToolkit : bool
+    m_ShowCustomSorter : bool
+    + breakBeforeColorGrading : bool = false
+    + haveBundlesBeenInited : bool <<get>>
+    m_SettingsUpdateNeeded : bool = true
+    m_IsRenderingInSceneView : bool = false
+    m_NaNKilled : bool = false
+    OnEnable() : void
+    InitLegacy() : void
+    + Init(resources:PostProcessResources) : void
+    + InitBundles() : void
+    UpdateBundleSortList(sortedList:List<SerializedBundleRef>, evt:PostProcessEvent) : void
+    OnDisable() : void
+    Reset() : void
+    OnPreCull() : void
+    OnPreRender() : void
+    {static} RequiresInitialBlit(camera:Camera, context:PostProcessRenderContext) : bool
+    UpdateSrcDstForOpaqueOnly(src:int, dst:int, context:PostProcessRenderContext, cameraTarget:RenderTargetIdentifier, opaqueOnlyEffectsRemaining:int) : void
+    BuildCommandBuffers() : void
+    OnPostRender() : void
+    + GetBundle() : PostProcessBundle
+    + GetBundle(settingsType:Type) : PostProcessBundle
+    + GetSettings() : T
+    + BakeMSVOMap(cmd:CommandBuffer, camera:Camera, destination:RenderTargetIdentifier, depthMap:RenderTargetIdentifier?, invert:bool, isMSAA:bool) : void
+    SetLegacyCameraFlags(context:PostProcessRenderContext) : void
+    + ResetHistory() : void
+    + HasOpaqueOnlyEffects(context:PostProcessRenderContext) : bool
+    + HasActiveEffects(evt:PostProcessEvent, context:PostProcessRenderContext) : bool
+    SetupContext(context:PostProcessRenderContext) : void
+    + UpdateVolumeSystem(cam:Camera, cmd:CommandBuffer) : void
+    + RenderOpaqueOnly(context:PostProcessRenderContext) : void
+    + Render(context:PostProcessRenderContext) : void
+    RenderInjectionPoint(evt:PostProcessEvent, context:PostProcessRenderContext, marker:string, releaseTargetAfterUse:int) : int
+    RenderList(list:List<SerializedBundleRef>, context:PostProcessRenderContext, marker:string) : void
+    ApplyFlip(context:PostProcessRenderContext, properties:MaterialPropertyBlock) : void
+    ApplyDefaultFlip(properties:MaterialPropertyBlock) : void
+    RenderBuiltins(context:PostProcessRenderContext, isFinalPass:bool, releaseTargetAfterUse:int, eye:int) : int
+    RenderFinalPass(context:PostProcessRenderContext, releaseTargetAfterUse:int, eye:int) : void
+    RenderEffect(context:PostProcessRenderContext, useTempTarget:bool) : int
+    ShouldGenerateLogHistogram(context:PostProcessRenderContext) : bool
+}
+enum Antialiasing {
+    None,
+    FastApproximateAntialiasing,
+    SubpixelMorphologicalAntialiasing,
+    TemporalAntialiasing,
+}
+class SerializedBundleRef <<sealed>> {
+    + assemblyQualifiedName : string
+}
+class "List`1"<T> {
+}
+class "Dictionary`2"<T1,T2> {
+}
+MonoBehaviour <|-- PostProcessLayer
+PostProcessLayer --> "volumeTrigger" Transform
+PostProcessLayer --> "volumeLayer" LayerMask
+PostProcessLayer o-> "antialiasingMode" Antialiasing
+PostProcessLayer --> "temporalAntialiasing" TemporalAntialiasing
+PostProcessLayer --> "subpixelMorphologicalAntialiasing" SubpixelMorphologicalAntialiasing
+PostProcessLayer --> "fastApproximateAntialiasing" FastApproximateAntialiasing
+PostProcessLayer --> "fog" Fog
+PostProcessLayer --> "dithering" Dithering
+PostProcessLayer --> "debugLayer" PostProcessDebugLayer
+PostProcessLayer --> "m_Resources" PostProcessResources
+PostProcessLayer --> "m_OldResources" PostProcessResources
+PostProcessLayer --> "m_BeforeTransparentBundles<SerializedBundleRef>" "List`1"
+PostProcessLayer --> "m_BeforeStackBundles<SerializedBundleRef>" "List`1"
+PostProcessLayer --> "m_AfterStackBundles<SerializedBundleRef>" "List`1"
+PostProcessLayer --> "sortedBundles<PostProcessEvent,List<SerializedBundleRef>>" "Dictionary`2"
+PostProcessLayer --> "cameraDepthFlags" DepthTextureMode
+PostProcessLayer --> "m_Bundles<Type,PostProcessBundle>" "Dictionary`2"
+PostProcessLayer --> "m_PropertySheetFactory" PropertySheetFactory
+PostProcessLayer --> "m_LegacyCmdBufferBeforeReflections" CommandBuffer
+PostProcessLayer --> "m_LegacyCmdBufferBeforeLighting" CommandBuffer
+PostProcessLayer --> "m_LegacyCmdBufferOpaque" CommandBuffer
+PostProcessLayer --> "m_LegacyCmdBuffer" CommandBuffer
+PostProcessLayer --> "m_Camera" Camera
+PostProcessLayer --> "m_CurrentContext" PostProcessRenderContext
+PostProcessLayer --> "m_LogHistogram" LogHistogram
+PostProcessLayer --> "m_TargetPool" TargetPool
+PostProcessLayer o-> "m_ActiveEffects<PostProcessEffectRenderer>" "List`1"
+PostProcessLayer o-> "m_Targets<RenderTargetIdentifier>" "List`1"
+PostProcessLayer +-- Antialiasing
+PostProcessLayer +-- SerializedBundleRef
+SerializedBundleRef --> "bundle" PostProcessBundle
+@enduml

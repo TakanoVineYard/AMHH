@@ -1,0 +1,21 @@
+@startuml
+class ColorUtilities <<static>> {
+    + {static} StandardIlluminantY(x:float) : float
+    + {static} CIExyToLMS(x:float, y:float) : Vector3
+    + {static} ComputeColorBalance(temperature:float, tint:float) : Vector3
+    + {static} ColorToLift(color:Vector4) : Vector3
+    + {static} ColorToInverseGamma(color:Vector4) : Vector3
+    + {static} ColorToGain(color:Vector4) : Vector3
+    <<const>> logC_cut : float = 0.011361f
+    <<const>> logC_a : float = 5.555556f
+    <<const>> logC_b : float = 0.047996f
+    <<const>> logC_c : float = 0.244161f
+    <<const>> logC_d : float = 0.386036f
+    <<const>> logC_e : float = 5.301883f
+    <<const>> logC_f : float = 0.092819f
+    + {static} LogCToLinear(x:float) : float
+    + {static} LinearToLogC(x:float) : float
+    + {static} ToHex(c:Color) : uint
+    + {static} ToRGBA(hex:uint) : Color
+}
+@enduml

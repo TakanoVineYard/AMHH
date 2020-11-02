@@ -69,6 +69,12 @@ public class CountDownTimerTest : MonoBehaviour
     {
         CountDownTimer.enabled = false;
         //this.gameObject.SetActive (false);
+        ResetCountDown();
 
     }
+
+    void ResetCountDown(){
+        CountDownMin = 3;
+    }
+
 }

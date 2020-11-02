@@ -1,0 +1,79 @@
+@startuml
+class ColorGradingEditor <<sealed>> {
+    <<const>> k_CustomToneCurveResolution : int = 48
+    <<const>> k_CustomToneCurveRangeY : float = 1.025f
+    + <<override>> OnEnable() : void
+    + <<override>> OnInspectorGUI() : void
+    SetupCurve(prop:SerializedProperty, color:Color, minPointCount:uint, loop:bool) : void
+    DoExternalModeGUI() : void
+    DoStandardModeGUI(hdr:bool) : void
+    CheckLutImportSettings(lut:Texture) : void
+    SetLutImportSettings(importer:TextureImporter) : void
+    DrawCustomToneCurve() : void
+    DrawLine(x1:float, y1:float, x2:float, y2:float, grayscale:float, rangeX:float) : void
+    PointInRect(x:float, y:float, rangeX:float) : Vector3
+    ResetVisibleCurves() : void
+    SetCurveVisible(rawProp:SerializedProperty, overrideProp:SerializedProperty) : void
+    CurveOverrideToggle(overrideProp:SerializedProperty) : void
+    DoCurvesGUI(hdr:bool) : void
+    DrawBackgroundTexture(rect:Rect, pass:int) : void
+    DoCurveSelectionPopup(id:int, hdr:bool) : int
+}
+class "PostProcessEffectEditor`1"<T> {
+}
+class "Dictionary`2"<T1,T2> {
+}
+"PostProcessEffectEditor`1" "<ColorGrading>" <|-- ColorGradingEditor
+ColorGradingEditor --> "m_GradingMode" SerializedParameterOverride
+ColorGradingEditor --> "m_ExternalLut" SerializedParameterOverride
+ColorGradingEditor --> "m_Tonemapper" SerializedParameterOverride
+ColorGradingEditor --> "m_ToneCurveToeStrength" SerializedParameterOverride
+ColorGradingEditor --> "m_ToneCurveToeLength" SerializedParameterOverride
+ColorGradingEditor --> "m_ToneCurveShoulderStrength" SerializedParameterOverride
+ColorGradingEditor --> "m_ToneCurveShoulderLength" SerializedParameterOverride
+ColorGradingEditor --> "m_ToneCurveShoulderAngle" SerializedParameterOverride
+ColorGradingEditor --> "m_ToneCurveGamma" SerializedParameterOverride
+ColorGradingEditor --> "m_LdrLut" SerializedParameterOverride
+ColorGradingEditor --> "m_LdrLutContribution" SerializedParameterOverride
+ColorGradingEditor --> "m_Temperature" SerializedParameterOverride
+ColorGradingEditor --> "m_Tint" SerializedParameterOverride
+ColorGradingEditor --> "m_ColorFilter" SerializedParameterOverride
+ColorGradingEditor --> "m_HueShift" SerializedParameterOverride
+ColorGradingEditor --> "m_Saturation" SerializedParameterOverride
+ColorGradingEditor --> "m_Brightness" SerializedParameterOverride
+ColorGradingEditor --> "m_PostExposure" SerializedParameterOverride
+ColorGradingEditor --> "m_Contrast" SerializedParameterOverride
+ColorGradingEditor --> "m_MixerRedOutRedIn" SerializedParameterOverride
+ColorGradingEditor --> "m_MixerRedOutGreenIn" SerializedParameterOverride
+ColorGradingEditor --> "m_MixerRedOutBlueIn" SerializedParameterOverride
+ColorGradingEditor --> "m_MixerGreenOutRedIn" SerializedParameterOverride
+ColorGradingEditor --> "m_MixerGreenOutGreenIn" SerializedParameterOverride
+ColorGradingEditor --> "m_MixerGreenOutBlueIn" SerializedParameterOverride
+ColorGradingEditor --> "m_MixerBlueOutRedIn" SerializedParameterOverride
+ColorGradingEditor --> "m_MixerBlueOutGreenIn" SerializedParameterOverride
+ColorGradingEditor --> "m_MixerBlueOutBlueIn" SerializedParameterOverride
+ColorGradingEditor --> "m_Lift" SerializedParameterOverride
+ColorGradingEditor --> "m_Gamma" SerializedParameterOverride
+ColorGradingEditor --> "m_Gain" SerializedParameterOverride
+ColorGradingEditor --> "m_MasterCurve" SerializedParameterOverride
+ColorGradingEditor --> "m_RedCurve" SerializedParameterOverride
+ColorGradingEditor --> "m_GreenCurve" SerializedParameterOverride
+ColorGradingEditor --> "m_BlueCurve" SerializedParameterOverride
+ColorGradingEditor --> "m_HueVsHueCurve" SerializedParameterOverride
+ColorGradingEditor --> "m_HueVsSatCurve" SerializedParameterOverride
+ColorGradingEditor --> "m_SatVsSatCurve" SerializedParameterOverride
+ColorGradingEditor --> "m_LumVsSatCurve" SerializedParameterOverride
+ColorGradingEditor --> "m_RawMasterCurve" SerializedProperty
+ColorGradingEditor --> "m_RawRedCurve" SerializedProperty
+ColorGradingEditor --> "m_RawGreenCurve" SerializedProperty
+ColorGradingEditor --> "m_RawBlueCurve" SerializedProperty
+ColorGradingEditor --> "m_RawHueVsHueCurve" SerializedProperty
+ColorGradingEditor --> "m_RawHueVsSatCurve" SerializedProperty
+ColorGradingEditor --> "m_RawSatVsSatCurve" SerializedProperty
+ColorGradingEditor --> "m_RawLumVsSatCurve" SerializedProperty
+ColorGradingEditor --> "m_CurveEditor" CurveEditor
+ColorGradingEditor --> "m_CurveDict<SerializedProperty,Color>" "Dictionary`2"
+ColorGradingEditor --> "m_CustomToneCurveRect" Rect
+ColorGradingEditor o-> "m_HableCurve" HableCurve
+ColorGradingEditor --> "s_MaterialGrid" Material
+@enduml

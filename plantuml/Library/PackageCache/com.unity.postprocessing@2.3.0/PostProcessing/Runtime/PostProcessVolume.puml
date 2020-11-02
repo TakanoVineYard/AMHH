@@ -1,0 +1,22 @@
+@startuml
+class PostProcessVolume <<sealed>> {
+    + isGlobal : bool = false
+    + blendDistance : float = 0f
+    + weight : float = 1f
+    + priority : float = 0f
+    + HasInstantiatedProfile() : bool
+    m_PreviousLayer : int
+    m_PreviousPriority : float
+    OnEnable() : void
+    OnDisable() : void
+    Update() : void
+    OnDrawGizmos() : void
+}
+class "List`1"<T> {
+}
+MonoBehaviour <|-- PostProcessVolume
+PostProcessVolume --> "sharedProfile" PostProcessProfile
+PostProcessVolume --> "profile" PostProcessProfile
+PostProcessVolume --> "m_TempColliders<Collider>" "List`1"
+PostProcessVolume --> "m_InternalProfile" PostProcessProfile
+@enduml

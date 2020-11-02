@@ -1,0 +1,14 @@
+@startuml
+class SoundTest {
+    Start() : void
+    Update() : void
+}
+MonoBehaviour <|-- SoundTest
+SoundTest --> "soundCountDown" AudioClip
+SoundTest --> "soundGameStart" AudioClip
+SoundTest --> "soundGameBGM" AudioClip
+SoundTest --> "soundCorrect" AudioClip
+SoundTest --> "soundIncorrect" AudioClip
+SoundTest --> "soundGameCuestion" AudioClip
+SoundTest --> "GameAudioSource" AudioSource
+@enduml

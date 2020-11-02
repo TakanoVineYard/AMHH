@@ -1,0 +1,7 @@
+@startuml
+class DefineSetter <<sealed>> {
+    <<const>> k_Define : string = "UNITY_POST_PROCESSING_STACK_V2"
+    {static} DefineSetter()
+    {static} IsObsolete(group:BuildTargetGroup) : bool
+}
+@enduml

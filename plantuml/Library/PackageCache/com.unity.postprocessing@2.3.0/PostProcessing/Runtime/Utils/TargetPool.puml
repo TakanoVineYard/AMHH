@@ -1,0 +1,9 @@
+@startuml
+class TargetPool {
+    m_Current : int
+    Get(i:int) : int
+}
+class "List`1"<T> {
+}
+TargetPool --> "m_Pool<int>" "List`1"
+@enduml

@@ -1,0 +1,13 @@
+@startuml
+class CountDownTimerTest {
+    + seconds : float = 0
+    countDownTimeOffset : float = 0
+    + CountDownMin : int = 3
+    + CountDownSpan : float = 1.0f
+    Start() : void
+    + Update() : void
+    OffActiveStartText() : void
+}
+MonoBehaviour <|-- CountDownTimerTest
+CountDownTimerTest --> "CountDownTimer" Text
+@enduml

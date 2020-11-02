@@ -1,0 +1,42 @@
+@startuml
+class PostProcessLayerEditor <<sealed>> {
+    OnEnable() : void
+    OnDisable() : void
+    + <<override>> OnInspectorGUI() : void
+    DoVolumeBlending() : void
+    DoAntialiasing() : void
+    DoFog(camera:Camera) : void
+    DoToolkit() : void
+    DoCustomEffectSorter() : void
+    ExportFrameToExr(mode:ExportMode) : void
+}
+class "BaseEditor`1"<T> {
+}
+class "Dictionary`2"<T1,T2> {
+}
+enum ExportMode {
+    FullFrame,
+    DisablePost,
+    BreakBeforeColorGradingLinear,
+    BreakBeforeColorGradingLog,
+}
+"BaseEditor`1" "<PostProcessLayer>" <|-- PostProcessLayerEditor
+PostProcessLayerEditor --> "m_StopNaNPropagation" SerializedProperty
+PostProcessLayerEditor --> "m_DirectToCameraTarget" SerializedProperty
+PostProcessLayerEditor --> "m_VolumeTrigger" SerializedProperty
+PostProcessLayerEditor --> "m_VolumeLayer" SerializedProperty
+PostProcessLayerEditor --> "m_AntialiasingMode" SerializedProperty
+PostProcessLayerEditor --> "m_TaaJitterSpread" SerializedProperty
+PostProcessLayerEditor --> "m_TaaSharpness" SerializedProperty
+PostProcessLayerEditor --> "m_TaaStationaryBlending" SerializedProperty
+PostProcessLayerEditor --> "m_TaaMotionBlending" SerializedProperty
+PostProcessLayerEditor --> "m_SmaaQuality" SerializedProperty
+PostProcessLayerEditor --> "m_FxaaFastMode" SerializedProperty
+PostProcessLayerEditor --> "m_FxaaKeepAlpha" SerializedProperty
+PostProcessLayerEditor --> "m_FogEnabled" SerializedProperty
+PostProcessLayerEditor --> "m_FogExcludeSkybox" SerializedProperty
+PostProcessLayerEditor --> "m_ShowToolkit" SerializedProperty
+PostProcessLayerEditor --> "m_ShowCustomSorter" SerializedProperty
+PostProcessLayerEditor --> "m_CustomLists<PostProcessEvent,ReorderableList>" "Dictionary`2"
+PostProcessLayerEditor +-- ExportMode
+@enduml

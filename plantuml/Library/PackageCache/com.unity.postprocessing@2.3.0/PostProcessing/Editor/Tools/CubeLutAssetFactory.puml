@@ -1,0 +1,8 @@
+@startuml
+class CubeLutAssetFactory <<static>> {
+    <<const>> kVersion : int = 1
+    <<const>> kSize : int = 33
+    {static} CreateLuts() : void
+    {static} Dump(title:string, eval:Func<float, float>) : void
+}
+@enduml

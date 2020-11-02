@@ -1,0 +1,22 @@
+@startuml
+class TimerTest {
+    + {static} GameStart : bool
+    + {static} getDeltaTime : float = 0
+    + PauseButton : bool = false
+    + gameFinish : bool = false
+    + gameFinishTime : bool = false
+    + gameSetTime : float = 30.0f
+    gameTimeOffset : float = 0
+    Start() : void
+    Update() : void
+    + {static} GameStartTrigger() : void
+    + GamePose() : void
+    + DerayGameTitleLoadRun() : void
+}
+MonoBehaviour <|-- TimerTest
+TimerTest --> "soundGameStart" AudioClip
+TimerTest --> "soundGameBGM" AudioClip
+TimerTest --> "soundGameFinish" AudioClip
+TimerTest --> "GameAudioSource" AudioSource
+TimerTest --> "pauseButton" GameObject
+@enduml

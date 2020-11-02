@@ -1,0 +1,11 @@
+@startuml
+class WaveformMonitor <<sealed>> {
+    + exposure : float = 0.12f
+    + height : int = 256
+    <<const>> k_ThreadGroupSize : int = 256
+    <<const>> k_ThreadGroupSizeX : int = 16
+    <<const>> k_ThreadGroupSizeY : int = 16
+}
+Monitor <|-- WaveformMonitor
+WaveformMonitor --> "m_Data" ComputeBuffer
+@enduml

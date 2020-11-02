@@ -1,0 +1,16 @@
+@startuml
+class ScreenSpaceReflectionsEditor <<sealed>> {
+    + <<override>> OnEnable() : void
+    + <<override>> OnInspectorGUI() : void
+}
+class "PostProcessEffectEditor`1"<T> {
+}
+"PostProcessEffectEditor`1" "<ScreenSpaceReflections>" <|-- ScreenSpaceReflectionsEditor
+ScreenSpaceReflectionsEditor --> "m_Preset" SerializedParameterOverride
+ScreenSpaceReflectionsEditor --> "m_MaximumIterationCount" SerializedParameterOverride
+ScreenSpaceReflectionsEditor --> "m_Thickness" SerializedParameterOverride
+ScreenSpaceReflectionsEditor --> "m_Resolution" SerializedParameterOverride
+ScreenSpaceReflectionsEditor --> "m_MaximumMarchDistance" SerializedParameterOverride
+ScreenSpaceReflectionsEditor --> "m_DistanceFade" SerializedParameterOverride
+ScreenSpaceReflectionsEditor --> "m_Vignette" SerializedParameterOverride
+@enduml

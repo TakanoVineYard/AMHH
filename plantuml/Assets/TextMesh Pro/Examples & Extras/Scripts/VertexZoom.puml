@@ -1,0 +1,14 @@
+@startuml
+class VertexZoom {
+    + AngleMultiplier : float = 1.0f
+    + SpeedMultiplier : float = 1.0f
+    + CurveScale : float = 1.0f
+    Awake() : void
+    OnEnable() : void
+    OnDisable() : void
+    Start() : void
+    ON_TEXT_CHANGED(obj:Object) : void
+    AnimateVertexColors() : IEnumerator
+}
+MonoBehaviour <|-- VertexZoom
+@enduml

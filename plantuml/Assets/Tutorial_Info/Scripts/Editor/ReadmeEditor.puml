@@ -1,0 +1,23 @@
+@startuml
+class ReadmeEditor {
+    {static} kShowedReadmeSessionStateName : string = "ReadmeEditor.showedReadme"
+    {static} kSpace : float = 16f
+    {static} ReadmeEditor()
+    {static} SelectReadmeAutomatically() : void
+    {static} LoadLayout() : void
+    {static} SelectReadme() : Readme
+    + <<override>> OnInspectorGUI() : void
+    m_Initialized : bool
+    Init() : void
+    LinkLabel(label:GUIContent, options:GUILayoutOption[]) : bool
+}
+Editor <|-- ReadmeEditor
+ReadmeEditor --> "LinkStyle" GUIStyle
+ReadmeEditor --> "m_LinkStyle" GUIStyle
+ReadmeEditor --> "TitleStyle" GUIStyle
+ReadmeEditor --> "m_TitleStyle" GUIStyle
+ReadmeEditor --> "HeadingStyle" GUIStyle
+ReadmeEditor --> "m_HeadingStyle" GUIStyle
+ReadmeEditor --> "BodyStyle" GUIStyle
+ReadmeEditor --> "m_BodyStyle" GUIStyle
+@enduml

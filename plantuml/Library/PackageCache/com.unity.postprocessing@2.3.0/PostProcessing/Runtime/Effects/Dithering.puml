@@ -1,0 +1,5 @@
+@startuml
+class Dithering <<sealed>> {
+    m_NoiseTextureIndex : int = 0
+}
+@enduml

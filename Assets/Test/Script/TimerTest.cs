@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI; //テキスト使うなら必要？
+using UnityEngine.UI; //テキスト使う
 using static TimerTest;
 using UnityEngine.SceneManagement; //シーン切り替え
 using static CharacterTest;
@@ -29,10 +29,10 @@ public class TimerTest : MonoBehaviour
     public GameObject pauseButton;
     public bool PauseButton = false; //ゲーム一時停止
 
-    public bool gameFinish = false;
+    public static bool gameFinish = false;
     public bool gameFinishTime = false;
 
-    public float gameSetTime = 30.0f;
+    float gameSetTime = 10.0f;
     float gameTimeOffset = 0;
 
     //Start is called before the first frame update
@@ -94,11 +94,16 @@ public class TimerTest : MonoBehaviour
         if ((GameStart == false)&&(gameFinish == true))
         {
 
-            GameAudioSource.PlayOneShot(soundGameFinish); //音再生
             Debug.Log("ゲームとまった");
 
             CountTimer.text = "Finish!!";
+
+                        if(seconds != 0){
+                GameAudioSource.PlayOneShot(soundGameFinish); //音再生
+            }
             GamePose();
+
+
 
         }
     }
@@ -107,16 +112,17 @@ public class TimerTest : MonoBehaviour
     public static void GameStartTrigger()
     {
         //minute = 0;
-        seconds = 0;
         oldSeconds = 0;
         GameStart = true;
     }
 
     public void GamePose()　//時間経過後ゲーム止める
     {
+        
         getDeltaTime = 0;
+        seconds = 0;  //秒数リセットしておく
         //MoveReset();
-        gameFinishTime = true;
+        //gameFinishTime = true;
         Invoke("DerayGameTitleLoadRun", 4.0f);
 
     }

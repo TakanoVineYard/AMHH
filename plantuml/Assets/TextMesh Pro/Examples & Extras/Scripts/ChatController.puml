@@ -1,0 +1,11 @@
+@startuml
+class ChatController {
+    OnEnable() : void
+    OnDisable() : void
+    AddToChatOutput(newText:string) : void
+}
+MonoBehaviour <|-- ChatController
+ChatController --> "TMP_ChatInput" TMP_InputField
+ChatController --> "TMP_ChatOutput" TMP_Text
+ChatController --> "ChatScrollbar" Scrollbar
+@enduml

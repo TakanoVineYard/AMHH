@@ -19,7 +19,7 @@ public class DebugQuestionTime : MonoBehaviour
 
         debugQuestionTime = GameObject.Find("QuestionTime"); //出題中カウント用のオブジェクトをひっぱる
 
-        at = GameObject.Find("CharacterAll").GetComponent<CharacterTest>();
+        at = GameObject.Find("ThendBear").GetComponent<CharacterTest>();
 
         debugQTText = GetComponentInChildren<Text>();
 

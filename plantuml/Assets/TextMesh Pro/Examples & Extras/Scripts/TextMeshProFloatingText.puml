@@ -1,0 +1,13 @@
+@startuml
+class TextMeshProFloatingText {
+    + SpawnType : int
+    Awake() : void
+    Start() : void
+    + DisplayTextMeshProFloatingText() : IEnumerator
+    + DisplayTextMeshFloatingText() : IEnumerator
+}
+MonoBehaviour <|-- TextMeshProFloatingText
+TextMeshProFloatingText --> "TheFont" Font
+TextMeshProFloatingText o-> "lastPOS" Vector3
+TextMeshProFloatingText o-> "lastRotation" Quaternion
+@enduml

@@ -1,0 +1,7 @@
+@startuml
+class PostProcessBundle <<sealed>> {
+}
+PostProcessBundle --> "attribute" PostProcessAttribute
+PostProcessBundle --> "settings" PostProcessEffectSettings
+PostProcessBundle --> "m_Renderer" PostProcessEffectRenderer
+@enduml

@@ -1,0 +1,19 @@
+@startuml
+class VignetteEditor <<sealed>> {
+    + <<override>> OnEnable() : void
+    + <<override>> OnInspectorGUI() : void
+    SetMaskImportSettings(importer:TextureImporter) : void
+}
+class "PostProcessEffectEditor`1"<T> {
+}
+"PostProcessEffectEditor`1" "<Vignette>" <|-- VignetteEditor
+VignetteEditor --> "m_Mode" SerializedParameterOverride
+VignetteEditor --> "m_Color" SerializedParameterOverride
+VignetteEditor --> "m_Center" SerializedParameterOverride
+VignetteEditor --> "m_Intensity" SerializedParameterOverride
+VignetteEditor --> "m_Smoothness" SerializedParameterOverride
+VignetteEditor --> "m_Roundness" SerializedParameterOverride
+VignetteEditor --> "m_Rounded" SerializedParameterOverride
+VignetteEditor --> "m_Mask" SerializedParameterOverride
+VignetteEditor --> "m_Opacity" SerializedParameterOverride
+@enduml

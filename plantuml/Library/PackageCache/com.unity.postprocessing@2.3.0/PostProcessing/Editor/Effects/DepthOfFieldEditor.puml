@@ -1,0 +1,13 @@
+@startuml
+class DepthOfFieldEditor <<sealed>> {
+    + <<override>> OnEnable() : void
+    + <<override>> OnInspectorGUI() : void
+}
+class "PostProcessEffectEditor`1"<T> {
+}
+"PostProcessEffectEditor`1" "<DepthOfField>" <|-- DepthOfFieldEditor
+DepthOfFieldEditor --> "m_FocusDistance" SerializedParameterOverride
+DepthOfFieldEditor --> "m_Aperture" SerializedParameterOverride
+DepthOfFieldEditor --> "m_FocalLength" SerializedParameterOverride
+DepthOfFieldEditor --> "m_KernelSize" SerializedParameterOverride
+@enduml

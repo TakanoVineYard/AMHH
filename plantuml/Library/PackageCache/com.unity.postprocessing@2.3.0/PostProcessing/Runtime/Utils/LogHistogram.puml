@@ -1,0 +1,11 @@
+@startuml
+class LogHistogram <<sealed>> {
+    + <<const>> rangeMin : int
+    + <<const>> rangeMax : int = 9
+    <<const>> k_Bins : int = 128
+    + Generate(context:PostProcessRenderContext) : void
+    + GetHistogramScaleOffsetRes(context:PostProcessRenderContext) : Vector4
+    + Release() : void
+}
+LogHistogram --> "data" ComputeBuffer
+@enduml

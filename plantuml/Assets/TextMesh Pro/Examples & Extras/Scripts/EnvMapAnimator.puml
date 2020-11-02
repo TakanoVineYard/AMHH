@@ -1,0 +1,8 @@
+@startuml
+class EnvMapAnimator {
+    Awake() : void
+    Start() : IEnumerator
+}
+MonoBehaviour <|-- EnvMapAnimator
+EnvMapAnimator --> "RotationSpeeds" Vector3
+@enduml

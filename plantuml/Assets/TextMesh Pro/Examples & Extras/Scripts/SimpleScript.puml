@@ -1,0 +1,7 @@
+@startuml
+class SimpleScript {
+    Start() : void
+    Update() : void
+}
+MonoBehaviour <|-- SimpleScript
+@enduml

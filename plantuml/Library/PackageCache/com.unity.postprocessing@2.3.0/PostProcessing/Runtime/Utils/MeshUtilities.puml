@@ -1,0 +1,10 @@
+@startuml
+class MeshUtilities <<static>> {
+    {static} MeshUtilities()
+    {static} GetBuiltinMesh(primitiveType:PrimitiveType) : Mesh
+}
+class "Dictionary`2"<T1,T2> {
+}
+MeshUtilities --> "s_Primitives<PrimitiveType,Mesh>" "Dictionary`2"
+MeshUtilities --> "s_ColliderPrimitives<Type,PrimitiveType>" "Dictionary`2"
+@enduml

@@ -1,0 +1,18 @@
+@startuml
+class GlobalSettings <<static>> {
+    {static} m_Loaded : bool = false
+    {static} m_TrackballSensitivity : float = 0.2f
+    {static} m_CurrentChannelMixer : int = 0
+    {static} m_CurrentCurve : int = 0
+    {static} GlobalSettings()
+    {static} PreferenceGUI() : void
+    {static} OpenGUI() : void
+    {static} Load() : void
+    {static} GetColor(key:string, defaultValue:Color) : Color
+    {static} TrySave(field:T, newValue:T, key:string) : void
+}
+class Keys <<static>> {
+}
+GlobalSettings o-> "m_VolumeGizmoColor" Color
+GlobalSettings +-- Keys
+@enduml

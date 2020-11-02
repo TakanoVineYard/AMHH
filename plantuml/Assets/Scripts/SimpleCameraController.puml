@@ -1,0 +1,28 @@
+@startuml
+class SimpleCameraController {
+    + boost : float = 3.5f
+    + positionLerpTime : float = 0.2f
+    + rotationLerpTime : float = 0.01f
+    + invertY : bool = false
+    OnEnable() : void
+    GetInputTranslationDirection() : Vector3
+    Update() : void
+}
+class CameraState {
+    + yaw : float
+    + pitch : float
+    + roll : float
+    + x : float
+    + y : float
+    + z : float
+    + SetFromTransform(t:Transform) : void
+    + Translate(translation:Vector3) : void
+    + LerpTowards(target:CameraState, positionLerpPct:float, rotationLerpPct:float) : void
+    + UpdateTransform(t:Transform) : void
+}
+MonoBehaviour <|-- SimpleCameraController
+SimpleCameraController o-> "m_TargetCameraState" CameraState
+SimpleCameraController o-> "m_InterpolatingCameraState" CameraState
+SimpleCameraController o-> "mouseSensitivityCurve" AnimationCurve
+SimpleCameraController +-- CameraState
+@enduml

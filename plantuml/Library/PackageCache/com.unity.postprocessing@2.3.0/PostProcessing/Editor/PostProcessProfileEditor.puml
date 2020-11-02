@@ -1,0 +1,9 @@
+@startuml
+class PostProcessProfileEditor <<sealed>> {
+    OnEnable() : void
+    OnDisable() : void
+    + <<override>> OnInspectorGUI() : void
+}
+Editor <|-- PostProcessProfileEditor
+PostProcessProfileEditor --> "m_EffectList" EffectListEditor
+@enduml

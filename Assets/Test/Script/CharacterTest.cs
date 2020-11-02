@@ -11,20 +11,20 @@ public class CharacterTest : MonoBehaviour
     public Animator CharaAnimator;　//アニメーター用変数
     public Animator ResultAnimator;　//アニメーター用変数
     public bool QuestionStatus = false; //出題状態かどうか
-    GameObject resultObj;  //ゲームオブジェクトResultを入れる用
+    public GameObject resultObj;  //ゲームオブジェクトResultを入れる用
 
     public bool GameStartTrigger = false; //ゲーム開始の許可用
 
-    public float span = 3.0f;  //スパン
-    public float elapsedTime;  //合計経過時間
+    float span = 1.5f;  //待機出題までのスパン
+    //public float elapsedTime;  //合計経過時間
     public float currentTime = 0.0f; //現在の時間
+
+    //public float MoveResetSpan = 5.0f; //戻るまでのラグ
     
     public ScoreTest sr; //スコアテストスクリプト使えるように スコアリザルト用
 
     public ScoreTest tj; //スコアテストスクリプト使えるように タイムジャッジ用
 
-
-    public float timeJudgeCount = 0;
 
 
     public float startTime = 0.0f; //出題時点のカレントタイム
@@ -51,6 +51,11 @@ public class CharacterTest : MonoBehaviour
     public void Update()
     {
 
+        if(TimerTest.gameFinish == true){
+            QuestionStatus = false;
+        }
+
+
         if (CharaAnimator.GetBool("BackToIdle") == true)//待機戻りがオンだったら
         {
             
@@ -71,33 +76,39 @@ public class CharacterTest : MonoBehaviour
             endTime += getDeltaTime;
 
 
-            if (currentTime > span)  //経過時間がスパンより大きくなったら実行
+            if (currentTime >= span)  //経過時間がスパンより大きくなったら実行
             {
                 currentTime = 0f;   //現在の時間をリセット
 
                 //もし出題状態じゃなかったら実行
-                if ((QuestionStatus == false)&&(getDeltaTime != 0))
+                if ((QuestionStatus == false))
                 {
 
-                    MoveSelect(); //方向を選ぶ関数                    }
+                    MoveSelect(); //方向を選ぶ関数
 
                 }
                 //もし出題状態だったら実行
 
-                else if (QuestionStatus == true)
-                {
-
-                }
+//                else if (QuestionStatus == true)
+//              {
+//
+//              }
             }
 
-            if (GetAnswerTime() > tj.timeJudgeRange[4])
+            if (endTime > tj.timeJudgeRange[4])
             {
-                ResultAnimator.SetBool("Incorrect", true);
+                
+            ResultAnimator.SetBool("Incorrect",true);
+
+
                 sr.AddResult(false);
-                Invoke("MoveReset", 0.5f);
-                Debug.Log((tj.timeJudgeRange[4]) + "経過でミス");
+
+                Debug.Log((tj.timeJudgeRange[4]) + "秒経過でミス");
+
+                 Invoke("MoveReset", 0.5f); //しばらくしたら出題状態をやめて、アニメーターの状態をIdleに戻す。
 
             }
+
         }
 
 
@@ -232,6 +243,8 @@ public class CharacterTest : MonoBehaviour
         startTime = 0;
         endTime = 0;
 
+        
+
         switch (UnityEngine.Random.Range(0, 100) % 4)　//ランダムのあまりの数値で分岐。2で割ったあまりだから0か1
         {
 
@@ -269,6 +282,7 @@ public class CharacterTest : MonoBehaviour
     public void MoveReset() //出題状態をやめて、アニメーターの状態をIdleに戻す。
     {
 
+        Debug.Log("むーぶりせっと");
         QuestionStatus = false;
         CharaAnimator.SetBool("Left", false);  //左トリガーをオフ
         CharaAnimator.SetBool("Right", false);  //右トリガーをオフ
@@ -286,7 +300,12 @@ public class CharacterTest : MonoBehaviour
     public float GetAnswerTime()
     {
          
-        return (endTime - startTime);
+        return (endTime);
+    }
+
+
+    public void IncCollectAnswer(){
+            ResultAnimator.SetBool("Incorrect", true);
     }
 
 }

@@ -1,0 +1,10 @@
+@startuml
+class ButtonTest {
+    Start() : void
+    Update() : void
+    + Click(button:string) : void
+}
+MonoBehaviour <|-- ButtonTest
+ButtonTest --> "TapButton" GameObject
+ButtonTest --> "ReleaseButton" GameObject
+@enduml

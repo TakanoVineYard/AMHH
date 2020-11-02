@@ -1,0 +1,9 @@
+@startuml
+class PlayModeTestListGUI {
+    + <<override>> PrintHeadPanel() : void
+    + <<override>> RenderNoTestsInfo() : void
+}
+TestListGUI <|-- PlayModeTestListGUI
+PlayModeTestListGUI --> "TestMode" TestMode
+PlayModeTestListGUI --> "TestPlatform" TestPlatform
+@enduml
