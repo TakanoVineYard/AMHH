@@ -1,12 +1,9 @@
 @startuml
 class CharacterTest {
     + QuestionStatus : bool = false
-    + hogehoge : bool = false
     + GameStartTrigger : bool = false
-    + span : float = 0.0f
-    + elapsedTime : float
+    span : float = 1.5f
     + currentTime : float = 0.0f
-    + MoveResetSpan : float = 5.1f
     + startTime : float = 0.0f
     + endTime : float = 0.0f
     + answerTime : float = 0.0f
@@ -19,6 +16,7 @@ class CharacterTest {
     + MoveSelect() : void
     + MoveReset() : void
     + GetAnswerTime() : float
+    + IncCollectAnswer() : void
 }
 MonoBehaviour <|-- CharacterTest
 CharacterTest --> "CharaAnimator" Animator

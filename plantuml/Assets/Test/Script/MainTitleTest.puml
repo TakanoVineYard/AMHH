@@ -5,8 +5,5 @@ class MainTitleTest {
     + TapStartButton() : void
     + DerayGameLoadRun() : void
 }
-class MainTitleTest2 {
-}
 MonoBehaviour <|-- MainTitleTest
-MonoBehaviour <|-- MainTitleTest2
 @enduml

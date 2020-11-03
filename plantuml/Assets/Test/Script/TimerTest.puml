@@ -3,9 +3,9 @@ class TimerTest {
     + {static} GameStart : bool
     + {static} getDeltaTime : float = 0
     + PauseButton : bool = false
-    + gameFinish : bool = false
+    + {static} gameFinish : bool = false
     + gameFinishTime : bool = false
-    + gameSetTime : float = 30.0f
+    gameSetTime : float = 10.0f
     gameTimeOffset : float = 0
     Start() : void
     Update() : void

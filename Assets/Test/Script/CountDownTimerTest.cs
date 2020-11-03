@@ -20,6 +20,7 @@ public class CountDownTimerTest : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         //GameAudioSource.PlayOneShot(soundCountDown);
         seconds = 0;
         countDownTimeOffset = getDeltaTime;
@@ -58,6 +59,9 @@ public class CountDownTimerTest : MonoBehaviour
             if (CountDownMin <= 0)
             {
                 CountDownTimer.text = "Start！";
+
+ 
+                
                 GameStartTrigger();
                 Invoke("OffActiveStartText", 1); //一秒たったら消す
             }
