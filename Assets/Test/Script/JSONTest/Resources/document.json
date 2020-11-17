@@ -1,7 +1,0 @@
-{
- "userInfos" : [
-    { "id" : 1, "name" : "hanachiru", "tel" : { "homePhone" : "XXX-XXX-XXX", "mobilePhone" : "YYY-YYY-YYY"} },
-    { "id" : 2, "name" : "Mr.X", "tel" : { "homePhone" : "XXX-XXX-XXX", "mobilePhone" : "YYY-YYY-YYY"} },
-    { "id" : 3, "name" : "Ms.Y", "tel" : { "homePhone" : "XXX-XXX-XXX", "mobilePhone" : "YYY-YYY-YYY"} }
-   ] 
-}
