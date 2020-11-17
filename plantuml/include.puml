@@ -7,6 +7,7 @@
 !include .\\Assets\Test\HowToUseAnimatorController\Cube.puml
 !include .\\Assets\Test\Script\AnserJudgeTest.puml
 !include .\\Assets\Test\Script\ButtonTest.puml
+!include .\\Assets\Test\Script\CharacterPartsOfAnswerTest.puml
 !include .\\Assets\Test\Script\CharacterTest.puml
 !include .\\Assets\Test\Script\CountDownTimerTest.puml
 !include .\\Assets\Test\Script\DebugQuestionTime.puml

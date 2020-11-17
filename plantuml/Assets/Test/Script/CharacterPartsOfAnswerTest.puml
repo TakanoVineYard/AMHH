@@ -1,0 +1,7 @@
+@startuml
+class CharacterPartsOfAnswerTest {
+    Start() : void
+    Update() : void
+}
+MonoBehaviour <|-- CharacterPartsOfAnswerTest
+@enduml

@@ -21,7 +21,7 @@ public class TimerTest : MonoBehaviour
     private Text CountTimer; //経過時間用
 
     public  AudioClip soundGameStart;
-    public  AudioClip soundGameBGM;
+    public  AudioSource soundGameBGM;
     public AudioClip soundGameFinish;
 
     AudioSource GameAudioSource; //ゲームBGM
@@ -32,7 +32,7 @@ public class TimerTest : MonoBehaviour
     public static bool gameFinish = false;
     public bool gameFinishTime = false;
 
-    float gameSetTime = 10.0f;
+    float gameSetTime = 30.0f;
     float gameTimeOffset = 0;
 
     //Start is called before the first frame update
@@ -68,6 +68,10 @@ public class TimerTest : MonoBehaviour
             {
                 CountTimer.enabled = true;  //カウントの表示
                 GameAudioSource.PlayOneShot(soundGameStart); //音再生
+                
+                GameAudioSource.Play(); //音再生
+                
+                
             } //開始時テキストの表示
 
             seconds += (getDeltaTime - gameTimeOffset);
